@@ -1,3 +1,7 @@
 asgiref==3.12.1
 Django==6.0.8
 sqlparse==0.5.5
+
+#pip install -r requirements.txt
+#pip freeze > requirements.txt, freeze the current environment's packages into requirements.txt
+#freeze قام بإنشاء ملف requirements.txt يحتوي على جميع الحزم المثبتة في البيئة الحالية.
