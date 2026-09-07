@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Projects | Elevator Gate
+{% endblock %}
+
+{% block content %}
+
+    <h1>Projects</h1>
+
+    {% for project in projects %}
+        <div>
+            <a href="{% url 'projects:project_detail' slug=project.slug %}">
+                <h2>{{ project.title }}</h2>
+            </a>
+            <p>{{ project.short_description }}</p>
+
+            {% if project.category %}
+                <p>Category: {{ project.category }}</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No projects available.</p>
+    {% endfor %}
+
+{% endblock %}
