@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import Service, ServiceFeature
 
-class ServiceFeatureInline(admin.TabularInline):# يعني أننا نريد عرض ServiceFeature كصفوف صغيرة داخل صفحة Service.
+class ServiceFeatureInline(admin.TabularInline):# يعني أننا نريد عرض الفيتشر كصفوف صغيرة داخل صفحة الخدمات.
 
     model = ServiceFeature # يعني اي مودل مرتبط نريد عرضه
     extra = 1 #فتعني أن ديجانجو سيعرض صفًا فارغًا واحدًا جاهزًا لإضافة فيتشر جديدة

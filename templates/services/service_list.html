@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Services | Elevator Gate
+{% endblock %}
+
+{% block content %}
+
+    <h1>Services</h1>
+
+    {% for service in services %}
+        <div>
+            <h3>
+                <a href="{% url 'services:service_detail' service.slug %}">
+                    {{ service.title }}
+                </a>
+            </h3>
+            <p>{{ service.short_description }}</p>
+        </div>
+    {% empty %}
+        <p>No services available.</p>
+    {% endfor %}
+
+{% endblock %}
