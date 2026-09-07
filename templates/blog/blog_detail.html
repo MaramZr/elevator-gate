@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ post.title }} | Elevator Gate
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ post.title }}</h1>
+
+    {% if post.category %}
+        <p>Category: {{ post.category }}</p>
+    {% endif %}
+
+    <p>{{ post.published_at }}</p>
+
+    <p>{{ post.content }}</p>
+
+{% endblock %}
