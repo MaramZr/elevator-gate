@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+    About | Elevator Gate
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <h1>About Elevator Gate</h1>
+
+        <p>
+            Elevator Gate is a Saudi company specializing in elevator installation,
+            maintenance, modernization, and repair services for residential,
+            commercial, and institutional buildings across Saudi Arabia.
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Our Mission</h2>
+
+        <p>
+            To provide safe, reliable, and high-quality elevator solutions that
+            meet the needs of our clients and support the long-term performance
+            of their buildings.
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Our Services</h2>
+
+        <p>
+            We provide professional elevator installation, preventive maintenance,
+            modernization, repair, and technical support services.
+        </p>
+
+        <a href="{% url 'services:service_list' %}">
+            View Our Services
+        </a>
+    </section>
+
+
+    <section>
+        <h2>Why Choose Elevator Gate?</h2>
+
+        <ul>
+            <li>Professional technical expertise</li>
+            <li>Commitment to safety and quality</li>
+            <li>Reliable maintenance and support</li>
+            <li>Solutions for different building types</li>
+            <li>Modern elevator technologies</li>
+        </ul>
+    </section>
+
+
+    <section>
+        <h2>Our Projects</h2>
+
+        <p>
+            Explore some of the elevator installation and modernization projects
+            completed by Elevator Gate.
+        </p>
+
+        <a href="{% url 'projects:project_list' %}">
+            View Our Projects
+        </a>
+    </section>
+
+{% endblock %}

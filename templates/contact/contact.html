@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Contact | Elevator Gate
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <h1>Contact Us</h1>
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">
+                Send Message
+            </button>
+        </form>
+    </section>
+
+{% endblock %}

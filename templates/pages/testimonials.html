@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Testimonials | Elevator Gate
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <h1>Testimonials</h1>
+
+        {% for testimonial in testimonials %}
+            <div>
+                <h3>{{ testimonial.name }}</h3>
+
+                {% if testimonial.position or testimonial.company %}
+                    <p>
+                        {{ testimonial.position }}
+                        {% if testimonial.position and testimonial.company %} - {% endif %}
+                        {{ testimonial.company }}
+                    </p>
+                {% endif %}
+
+                <p>{{ testimonial.message }}</p>
+
+                {% if testimonial.image %}
+                    <img
+                        src="{{ testimonial.image.url }}"
+                        alt="{{ testimonial.name }}"
+                    >
+                {% endif %}
+            </div>
+
+        {% empty %}
+            <p>No testimonials available.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}

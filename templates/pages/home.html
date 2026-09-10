@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home | Elevator Gate
+{% endblock %}
+
+{% block content %}
+
+    <section>
+        <h1>Elevator Gate</h1>
+        <p>Professional elevator installation, maintenance, modernization, and repair services.</p>
+    </section>
+
+
+    <section>
+        <h2>Our Services</h2>
+
+        {% for service in services %}
+            <div>
+                <h3>
+                    <a href="{% url 'services:service_detail' service.slug %}">
+                        {{ service.title }}
+                    </a>
+                </h3>
+
+                <p>{{ service.short_description }}</p>
+            </div>
+        {% empty %}
+            <p>No services available.</p>
+        {% endfor %}
+    </section>
+
+
+    <section>
+        <h2>Featured Projects</h2>
+
+        {% for project in projects %}
+            <div>
+                <h3>
+                    <a href="{% url 'projects:project_detail' project.slug %}">
+                        {{ project.title }}
+                    </a>
+                </h3>
+
+                <p>{{ project.short_description }}</p>
+
+                {% if project.category %}
+                    <p>Category: {{ project.category }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No projects available.</p>
+        {% endfor %}
+    </section>
+
+
+    <section>
+        <h2>Latest Blog Posts</h2>
+
+        {% for post in blog_posts %}
+            <div>
+                <h3>
+                    <a href="{% url 'blog:blog_detail' post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h3>
+
+                <p>{{ post.excerpt }}</p>
+                <p>{{ post.published_at }}</p>
+            </div>
+        {% empty %}
+            <p>No blog posts available.</p>
+        {% endfor %}
+    </section>
+
+
+    <section>
+        <h2>Testimonials</h2>
+
+        {% for testimonial in testimonials %}
+            <div>
+                <h3>{{ testimonial.name }}</h3>
+                <p>{{ testimonial.position }} - {{ testimonial.company }}</p>
+                <p>{{ testimonial.message }}</p>
+            </div>
+        {% empty %}
+            <p>No testimonials available.</p>
+        {% endfor %}
+    </section>
+
+
+    <section>
+        <h2>Frequently Asked Questions</h2>
+
+        {% for faq in faqs %}
+            <div>
+                <h3>{{ faq.question }}</h3>
+                <p>{{ faq.answer }}</p>
+            </div>
+        {% empty %}
+            <p>No FAQs available.</p>
+        {% endfor %}
+    </section>
+
+{% endblock %}
