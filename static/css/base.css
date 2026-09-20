@@ -1,0 +1,178 @@
+:root {
+    /* Brand Colors */
+    --color-primary: #0f2744;
+    --color-secondary: #d6a84b;
+
+    /* Neutral Colors */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    --color-gray-900: #17202a;
+    --color-gray-700: #475569;
+    --color-gray-500: #8b8f94;
+    --color-gray-300: #cbd5e1;
+    --color-gray-200: #dbe0e3;
+    --color-gray-100: #e2e8f0;
+    --color-gray-50: #f8fafc;
+
+    /* Feedback Colors */
+    --color-success: #2e9b57;
+    --color-warning: #c97800;
+    --color-error: #c81e1e;
+    --color-info: #167aa8;
+
+        /* Typography */
+    --font-primary: "Cairo", sans-serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+
+    --font-size-h3: 1.5rem;
+    --font-size-h2: 2rem;
+    --font-size-h1: 2.75rem;
+    --font-size-display: 3.5rem;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    --line-height-tight: 1.25;
+    --line-height-heading: 1.4;
+    --line-height-body: 1.8;
+
+        /* Spacing */
+    --space-1: 0.25rem;   /* 4px */
+    --space-2: 0.5rem;    /* 8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.5rem;    /* 24px */
+    --space-6: 2rem;      /* 32px */
+    --space-7: 3rem;      /* 48px */
+    --space-8: 4rem;      /* 64px */
+    --space-9: 5rem;      /* 80px */
+    --space-10: 6rem;     /* 96px */
+
+    /* Layout */
+    --container-max-width: 1200px;
+    --container-padding: 1.5rem;
+
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(15, 39, 68, 0.08);
+    --shadow-md: 0 6px 18px rgba(15, 39, 68, 0.10);
+    --shadow-lg: 0 12px 30px rgba(15, 39, 68, 0.14);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    direction: rtl;
+
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-body);
+
+    background-color: var(--color-white);
+    color: var(--color-gray-900);
+}
+
+.container {
+    width: min(100% - 2 * var(--container-padding), var(--container-max-width));
+    margin-inline: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: var(--line-height-heading);
+    color: var(--color-primary);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-extrabold);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+}
+
+p {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+}

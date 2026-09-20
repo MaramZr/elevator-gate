@@ -1,75 +1,198 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    {% block extra_css %}{% endblock %}
+
     <title>
         {% block title %}
             Elevator Gate
         {% endblock %}
     </title>
+
 </head>
 
 <body>
 
-    <header>
-        <h1>Elevator Gate</h1>
-        <nav>
-            <a href="{% url 'pages:home' %}">Home</a>
-            <a href="{% url 'pages:about' %}">About</a>
-            <a href="{% url 'services:service_list' %}">Services</a>
-            <a href="{% url 'projects:project_list' %}">Projects</a>
-            <a href="{% url 'blog:blog_list' %}">Blog</a>
-            <a href="{% url 'pages:faq' %}">FAQ</a>
-            <a href="{% url 'contact:contact' %}">Contact</a>
-        </nav>
+    <header class="site-header">
+        <div class="container site-header__inner">
+
+            <a href="{% url 'pages:home' %}" class="site-logo">
+                <span class="site-logo__mark">E</span>
+                <span class="site-logo__text">بوابة المصاعد</span>
+            </a>
+            <button
+                class="site-nav-toggle"
+                type="button"
+                aria-label="فتح القائمة"
+                aria-expanded="false"
+                aria-controls="site-navigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="site-nav" id="site-navigation" aria-label="التنقل الرئيسي">
+                <ul class="site-nav__list">
+
+                    <li>
+                        <a href="{% url 'pages:home' %}" class="site-nav__link">
+                            الرئيسية
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'pages:about' %}" class="site-nav__link">
+                            من نحن
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'services:service_list' %}" class="site-nav__link">
+                            الخدمات
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'projects:project_list' %}" class="site-nav__link">
+                            المشاريع
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'blog:blog_list' %}" class="site-nav__link">
+                            المدونة
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'pages:faq' %}" class="site-nav__link">
+                            الأسئلة الشائعة
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'contact:contact' %}" class="site-nav__link">
+                            تواصل معنا
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                اطلب عرض سعر
+            </a>
+
+        </div>
     </header>
 
     <main>
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
-        <p>© 2026 Elevator Gate. All rights reserved.</p>
 
-        <p>
-            <a href="{% url 'contact:contact' %}">
-                Contact Us
+
+
+<section class="site-cta">
+    <div class="container site-cta__inner">
+
+        <h2 class="site-cta__title">
+            هل أنت مستعد لتأمين تنقل عمودي مريح وآمن؟
+        </h2>
+
+        <p class="site-cta__description">
+            تواصل مع مستشارينا الفنيين الآن واحصل على دراسة مجانية
+            لمتطلبات موقعك مع جدول عروض الأسعار المفصلة
+            وعقود الصيانة الدورية المطابقة للدفاع المدني.
+        </p>
+
+        <div class="site-cta__actions">
+            <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                اطلب عرض سعر الآن
             </a>
-        </p>
 
-        <p>
-            <a href="tel:+966500000000">
-                Call Us
+            <a href="https://wa.me/966XXXXXXXXX" class="btn btn--whatsapp">
+                تواصل عبر الواتساب
             </a>
-        </p>
+        </div>
 
-        <p>
-            <a href="https://wa.me/966500000000" target="_blank">
-                WhatsApp
-            </a>
-        </p>
+    </div>
+</section>
 
-        <p>
-            Email:
-            <a href="mailto:info@elevatorgate.sa">
-                info@elevatorgate.sa
-            </a>
-        </p>
 
-        <p>
-            Saudi Arabia
-        </p>
+    <footer class="site-footer">
+        <div class="container site-footer__grid">
 
-        <p>
-            <a
-                href="https://www.google.com/maps/search/?api=1&query=Saudi+Arabia"
-                target="_blank"
-            >
-                View Location
-            </a>
-        </p>
+            <div class="site-footer__brand">
+                <a href="{% url 'pages:home' %}" class="site-logo site-logo--footer">
+                    <span class="site-logo__mark">E</span>
+                    <span class="site-logo__text">بوابة المصاعد</span>
+                </a>
+
+                <p class="site-footer__description">
+                    الشركة الرائدة في حلول المصاعد المتكاملة بالمملكة العربية السعودية.
+                    نقدم خدمات التركيب والصيانة والتحديث بأعلى معايير الجودة والسلامة.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="site-footer__title">روابط سريعة</h3>
+
+                <ul class="site-footer__links">
+                    <li><a href="{% url 'pages:about' %}">من نحن</a></li>
+                    <li><a href="{% url 'projects:project_list' %}">المشاريع المنجزة</a></li>
+                    <li><a href="{% url 'blog:blog_list' %}">المدونة</a></li>
+                    <li><a href="{% url 'pages:faq' %}">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="site-footer__title">خدماتنا</h3>
+
+                <ul class="site-footer__links">
+                    <li><a href="{% url 'services:service_list' %}">تركيب المصاعد</a></li>
+                    <li><a href="{% url 'services:service_list' %}">صيانة المصاعد</a></li>
+                    <li><a href="{% url 'services:service_list' %}">تحديث وتطوير المصاعد</a></li>
+                    <li><a href="{% url 'services:service_list' %}">عقود الصيانة الدورية</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="site-footer__title">معلومات التواصل</h3>
+
+                <ul class="site-footer__contact">
+                    <li>الرياض، المملكة العربية السعودية</li>
+                    <li>+966 11 456 7890</li>
+                    <li>info@elevatorgate.sa</li>
+                    <li>الأحد – الخميس، 8:00 ص – 5:00 م</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="site-footer__bottom">
+            <div class="container site-footer__bottom-inner">
+                <p>© 2026 بوابة المصاعد. جميع الحقوق محفوظة.</p>
+
+                <div class="site-footer__legal">
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">الشروط والأحكام</a>
+                </div>
+            </div>
+        </div>
     </footer>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

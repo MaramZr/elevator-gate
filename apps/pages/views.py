@@ -9,7 +9,7 @@ from .models import FAQ, Testimonial
 def home(request):
     blog_posts = BlogPost.objects.filter(is_published=True).order_by("created_at")[:3]
     projects = Project.objects.filter(is_featured=True).order_by("created_at")[:3]
-    services = Service.objects.filter(is_active=True).order_by("order")[:3]
+    services = Service.objects.filter(is_active=True).order_by("order")[:6]
     testimonials = Testimonial.objects.filter(is_active=True).order_by("order")
     faqs = FAQ.objects.filter(is_active=True).order_by("order")
 

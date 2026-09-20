@@ -1,106 +1,527 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/home.css' %}">
+{% endblock %}
 
 {% block title %}
     Home | Elevator Gate
 {% endblock %}
 
 {% block content %}
+    <section class="hero">
+        <div class="container hero__inner">
 
-    <section>
-        <h1>Elevator Gate</h1>
-        <p>Professional elevator installation, maintenance, modernization, and repair services.</p>
-        
-    </section>
+            <div class="hero__content">
 
+                <span class="hero__eyebrow">
+                    بوابتك نحو مصاعد آمنة وذكية
+                </span>
 
-    <section>
-        <h2>Our Services</h2>
+                <h1 class="hero__title">
+                    حلول متكاملة للمصاعد تجمع بين
+                    <span>الأمان والجودة والاعتمادية</span>
+                </h1>
 
-        {% for service in services %}
-            <div>
-                <h3>
-                    <a href="{% url 'services:service_detail' service.slug %}">
-                        {{ service.title }}
+                <p class="hero__description">
+                    نقدم حلولاً متخصصة في تركيب وصيانة وتحديث المصاعد
+                    للمباني السكنية والتجارية والمنشآت، مع التركيز على
+                    السلامة وجودة التنفيذ وسهولة المتابعة الفنية.
+                </p>
+
+                <div class="hero__actions">
+                    <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                        اطلب عرض سعر
                     </a>
-                </h3>
 
-                <p>{{ service.short_description }}</p>
-            </div>
-        {% empty %}
-            <p>No services available.</p>
-        {% endfor %}
-    </section>
-
-
-    <section>
-        <h2>Featured Projects</h2>
-
-        {% for project in projects %}
-            <div>
-                <h3>
-                    <a href="{% url 'projects:project_detail' project.slug %}">
-                        {{ project.title }}
+                    <a href="{% url 'services:service_list' %}" class="btn btn--outline">
+                        استعرض خدماتنا
                     </a>
-                </h3>
+                </div>
 
-                <p>{{ project.short_description }}</p>
-
-                {% if project.category %}
-                    <p>Category: {{ project.category }}</p>
-                {% endif %}
             </div>
-        {% empty %}
-            <p>No projects available.</p>
-        {% endfor %}
+
+            <div class="hero__visual">
+                <div class="hero__image-placeholder">
+                    صورة المصعد
+                </div>
+            </div>
+
+        </div>
     </section>
 
+    <section class="stats">
+        <div class="container stats__grid">
 
-    <section>
-        <h2>Latest Blog Posts</h2>
-
-        {% for post in blog_posts %}
-            <div>
-                <h3>
-                    <a href="{% url 'blog:blog_detail' post.slug %}">
-                        {{ post.title }}
-                    </a>
-                </h3>
-
-                <p>{{ post.excerpt }}</p>
-                <p>{{ post.published_at }}</p>
+            <div class="stat">
+                <strong class="stat__number">+15</strong>
+                <span class="stat__label">سنوات الخبرة الفنية</span>
             </div>
-        {% empty %}
-            <p>No blog posts available.</p>
-        {% endfor %}
+
+            <div class="stat">
+                <strong class="stat__number">+1,200</strong>
+                <span class="stat__label">مشاريع مكتملة</span>
+            </div>
+
+            <div class="stat">
+                <strong class="stat__number">+4,500</strong>
+                <span class="stat__label">عقود صيانة نشطة</span>
+            </div>
+
+            <div class="stat">
+                <strong class="stat__number">+13</strong>
+                <span class="stat__label">مدن نخدمها بالمملكة</span>
+            </div>
+
+        </div>
     </section>
 
+    <section class="home-about">
+        <div class="container home-about__inner">
 
-    <section>
-        <h2>Testimonials</h2>
+            <div class="home-about__content">
+                <span class="home-about__eyebrow">من نحن</span>
 
-        {% for testimonial in testimonials %}
-            <div>
-                <h3>{{ testimonial.name }}</h3>
-                <p>{{ testimonial.position }} - {{ testimonial.company }}</p>
-                <p>{{ testimonial.message }}</p>
+                <h2 class="home-about__title">
+                    تاريخ ممتد من الريادة والالتزام بالسلامة
+                </h2>
+
+                <p class="home-about__description">
+                    تأسست بوابة المصاعد بهدف تقديم خدمات تركيب وصيانة موثوقة
+                    ومطابقة لأعلى مواصفات الأمان والجودة، مع فريق هندسي متخصص
+                    ودعم فني مستمر لخدمة مختلف القطاعات في المملكة.
+                </p>
+
+                <a href="{% url 'pages:about' %}" class="btn btn--outline">
+                    تعرف علينا
+                </a>
             </div>
-        {% empty %}
-            <p>No testimonials available.</p>
-        {% endfor %}
+
+            <div class="home-about__visual">
+                <div class="home-about__image-placeholder">
+                    صورة عن الشركة
+                </div>
+            </div>
+
+        </div>
     </section>
 
+    <section class="home-services">
+        <div class="container">
 
-    <section>
-        <h2>Frequently Asked Questions</h2>
+            <div class="section-heading">
+                <span class="section-heading__eyebrow">خدماتنا</span>
 
-        {% for faq in faqs %}
-            <div>
-                <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer }}</p>
+                <h2 class="section-heading__title">
+                    حلول مصاعد شاملة وموثوقة
+                </h2>
+
+                <p class="section-heading__description">
+                    نقدم مجموعة متكاملة من خدمات المصاعد المتخصصة لضمان
+                    حركة عمودية انسيابية وآمنة.
+                </p>
             </div>
-        {% empty %}
-            <p>No FAQs available.</p>
-        {% endfor %}
+
+            <div class="home-services__grid">
+
+                {% for service in services %}
+
+                    <article class="service-card">
+
+                        <div class="service-card__icon">
+                            E
+                        </div>
+
+                        <h3 class="service-card__title">
+                            {{ service.title }}
+                        </h3>
+
+                        {% if service.description %}
+                            <p class="service-card__description">
+                                {{ service.description }}
+                            </p>
+                        {% endif %}
+
+                        <a
+                            href="{% url 'services:service_detail' service.slug %}"
+                            class="service-card__link"
+                        >
+                            عرض التفاصيل
+                        </a>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>لا توجد خدمات متاحة حاليًا.</p>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="home-services__footer">
+                <a href="{% url 'services:service_list' %}" class="btn btn--outline">
+                    عرض جميع الخدمات
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="advantages">
+        <div class="container">
+
+            <div class="section-heading">
+                <span class="section-heading__eyebrow">
+                    ميزتنا التنافسية
+                </span>
+
+                <h2 class="section-heading__title">
+                    لماذا يثق العملاء في بوابة المصاعد؟
+                </h2>
+
+                <p class="section-heading__description">
+                    نلتزم بأعلى معايير الدقة والمهنية لتوفير حلول آمنة
+                    وموثوقة تدوم لسنوات طويلة.
+                </p>
+            </div>
+
+            <div class="advantages__grid">
+
+                <div class="advantage-card">
+                    <h3>الخبرة الفنية</h3>
+                    <p>
+                        فريق هندسي متخصص يمتلك خبرة في تركيب وصيانة
+                        مختلف أنظمة المصاعد.
+                    </p>
+                </div>
+
+                <div class="advantage-card">
+                    <h3>معايير السلامة</h3>
+                    <p>
+                        تطبيق إجراءات فنية دقيقة لضمان أعلى مستويات
+                        الأمان أثناء التشغيل.
+                    </p>
+                </div>
+
+                <div class="advantage-card">
+                    <h3>جودة المكونات</h3>
+                    <p>
+                        استخدام مكونات وقطع غيار موثوقة لضمان
+                        استمرارية وكفاءة التشغيل.
+                    </p>
+                </div>
+
+                <div class="advantage-card">
+                    <h3>سرعة الاستجابة</h3>
+                    <p>
+                        دعم فني سريع للتعامل مع البلاغات والأعطال
+                        الطارئة بكفاءة.
+                    </p>
+                </div>
+
+                <div class="advantage-card">
+                    <h3>الصيانة الوقائية</h3>
+                    <p>
+                        خطط صيانة دورية تساعد على تقليل الأعطال
+                        وإطالة العمر التشغيلي للمصعد.
+                    </p>
+                </div>
+
+                <div class="advantage-card">
+                    <h3>تغطية مدن المملكة</h3>
+                    <p>
+                        خدمات ميدانية تغطي عدة مدن لتقديم الدعم
+                        الفني للعملاء بشكل أسرع.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="featured-projects">
+        <div class="container">
+
+            <div class="section-heading">
+                <span class="section-heading__eyebrow">
+                    معرض أعمالنا
+                </span>
+
+                <h2 class="section-heading__title">
+                    مشاريع نفخر بتجهيزها وإدارتها فنيًا
+                </h2>
+
+                <p class="section-heading__description">
+                    نماذج من مشاريعنا في تركيب وصيانة وتحديث المصاعد
+                    لمختلف القطاعات.
+                </p>
+            </div>
+
+            <div class="featured-projects__grid">
+
+                {% for project in projects %}
+
+                    <article class="project-card">
+
+                        <div class="project-card__image">
+
+                            {% if project.image %}
+                                <img
+                                    src="{{ project.image.url }}"
+                                    alt="{{ project.title }}"
+                                >
+                            {% else %}
+                                <div class="project-card__placeholder">
+                                    صورة المشروع
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="project-card__content">
+
+                            <div class="project-card__meta">
+                                <span>{{ project.category.name }}</span>
+                                <span>{{ project.service.title }}</span>
+                            </div>
+
+                            <h3 class="project-card__title">
+                                {{ project.title }}
+                            </h3>
+
+                            <p class="project-card__description">
+                                {{ project.description|truncatewords:20 }}
+                            </p>
+
+                            <a
+                                href="{% url 'projects:project_detail' project.slug %}"
+                                class="project-card__link"
+                            >
+                                عرض التفاصيل
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>لا توجد مشاريع مميزة حاليًا.</p>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="featured-projects__footer">
+                <a
+                    href="{% url 'projects:project_list' %}"
+                    class="btn btn--outline"
+                >
+                    عرض جميع المشاريع
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="container">
+
+            <div class="process__heading">
+                <span class="process__eyebrow">خطوات العمل</span>
+
+                <h2 class="process__title">
+                    رحلة آمنة ومدروسة من البداية وحتى التشغيل
+                </h2>
+
+                <span class="process__divider"></span>
+
+                <p class="process__description">
+                    نتبع منهجية هندسية منظمة وصارمة لضمان تنفيذ كل مشروع بأعلى كفاءة
+                </p>
+            </div>
+
+            <div class="process__steps">
+
+                <article class="process-step">
+                    <span class="process-step__number">٠١</span>
+                    <h3>تقديم الطلب</h3>
+                    <p>استقبال استفسارك وتحديد احتياجك الأولي</p>
+                </article>
+
+                <article class="process-step">
+                    <span class="process-step__number">٠٢</span>
+                    <h3>المعاينة الميدانية</h3>
+                    <p>زيارة الموقع وقياس الأبعاد الفنية بدقة</p>
+                </article>
+
+                <article class="process-step">
+                    <span class="process-step__number">٠٣</span>
+                    <h3>عرض السعر</h3>
+                    <p>تقديم عرض تفصيلي فني ومالي دقيق</p>
+                </article>
+
+                <article class="process-step">
+                    <span class="process-step__number">٠٤</span>
+                    <h3>التنفيذ والتركيب</h3>
+                    <p>البدء بالعمل الميداني بأيدي هندسية ماهرة</p>
+                </article>
+
+                <article class="process-step">
+                    <span class="process-step__number">٠٥</span>
+                    <h3>الاختبار والتسليم</h3>
+                    <p>فحص الجودة والسلامة قبل التشغيل الفعلي</p>
+                </article>
+
+                <article class="process-step">
+                    <span class="process-step__number">٠٦</span>
+                    <h3>المتابعة والصيانة</h3>
+                    <p>دعم فني دوري مستمر وخدمة ما بعد البيع</p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+
+            <div class="testimonials__heading">
+                <span class="testimonials__eyebrow">
+                    آراء العملاء
+                </span>
+
+                <h2 class="testimonials__title">
+                    ماذا يقول شركاؤنا عن خدماتنا؟
+                </h2>
+
+                <span class="testimonials__divider"></span>
+
+                <p class="testimonials__description">
+                    ثقة عملائنا هي المحرك الرئيسي لالتزامنا بتقديم الأفضل دائمًا
+                </p>
+            </div>
+
+            <div class="testimonials__grid">
+
+                {% for testimonial in testimonials %}
+
+                    <article class="testimonial-card">
+
+                        <div class="testimonial-card__stars">
+                            ★★★★★
+                        </div>
+
+                        <p class="testimonial-card__message">
+                            “{{ testimonial.message }}”
+                        </p>
+
+                        <div class="testimonial-card__author">
+
+                            {% if testimonial.image %}
+                                <img
+                                    src="{{ testimonial.image.url }}"
+                                    alt="{{ testimonial.name }}"
+                                    class="testimonial-card__image"
+                                >
+                            {% endif %}
+
+                            <div>
+                                <h3 class="testimonial-card__name">
+                                    {{ testimonial.name }}
+                                </h3>
+
+                                {% if testimonial.position or testimonial.company %}
+                                    <p class="testimonial-card__meta">
+
+                                        {% if testimonial.position %}
+                                            {{ testimonial.position }}
+                                        {% endif %}
+
+                                        {% if testimonial.position and testimonial.company %}
+                                            -
+                                        {% endif %}
+
+                                        {% if testimonial.company %}
+                                            {{ testimonial.company }}
+                                        {% endif %}
+
+                                    </p>
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>لا توجد آراء عملاء متاحة حاليًا.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="home-faq">
+        <div class="container">
+
+            <div class="home-faq__heading">
+                <span class="home-faq__eyebrow">
+                    أسئلة متكررة
+                </span>
+
+                <h2 class="home-faq__title">
+                    تساؤلات شائعة حول المصاعد وخدماتها
+                </h2>
+
+                <span class="home-faq__divider"></span>
+
+                <p class="home-faq__description">
+                    إجابات مختصرة على أبرز استفسارات العملاء
+                    بخصوص التركيب والصيانة والتحديث.
+                </p>
+            </div>
+
+            <div class="home-faq__list">
+
+                {% for faq in faqs %}
+
+                    <details class="faq-item">
+                        <summary class="faq-item__question">
+                            {{ faq.question }}
+                        </summary>
+
+                        <div class="faq-item__answer">
+                            <p>{{ faq.answer }}</p>
+                        </div>
+                    </details>
+
+                {% empty %}
+
+                    <p>لا توجد أسئلة شائعة متاحة حاليًا.</p>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="home-faq__footer">
+                <a href="{% url 'pages:faq' %}" class="btn btn--outline">
+                    عرض جميع الأسئلة الشائعة
+                </a>
+            </div>
+
+        </div>
     </section>
 
 {% endblock %}
+
+
+
+
