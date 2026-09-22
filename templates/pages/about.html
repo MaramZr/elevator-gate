@@ -1,71 +1,303 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    About | Elevator Gate
+من نحن | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/about.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <section>
-        <h1>About Elevator Gate</h1>
+    <section class="about-page-hero">
+        <div class="container">
+            <div class="about-page-hero__breadcrumb">
+                الرئيسية
+                <span>/</span>
+                من نحن
+            </div>
 
-        <p>
-            Elevator Gate is a Saudi company specializing in elevator installation,
-            maintenance, modernization, and repair services for residential,
-            commercial, and institutional buildings across Saudi Arabia.
-        </p>
+            <div class="about-page-hero__content">
+                <h1>من نحن</h1>
+
+                <p>
+                    نتعرّف على قصة بوابة المصاعد، رؤيتنا، وقيمنا
+                    التي تقود نجاحنا اليومي في توفير المصاعد
+                    بأعلى أنظمة وحلول السلامة.
+                </p>
+            </div>
+        </div>
     </section>
 
+    <section class="about-intro">
+        <div class="container about-intro__grid">
 
-    <section>
-        <h2>Our Mission</h2>
+            <div class="about-intro__content">
+                <span class="about-section-label">
+                    قصة البداية
+                </span>
 
-        <p>
-            To provide safe, reliable, and high-quality elevator solutions that
-            meet the needs of our clients and support the long-term performance
-            of their buildings.
-        </p>
+                <h2>
+                    نهج هندسي عريق لبناء مستقبل التنقل الآمن
+                </h2>
+
+                <p>
+                    تأسست بوابة المصاعد لتكون شريكًا هندسيًا موثوقًا
+                    في حلول المصاعد، مستندة إلى معايير دقيقة في
+                    التركيب والصيانة والتحديث، مع التركيز على
+                    السلامة والجودة والاستدامة.
+                </p>
+            </div>
+
+            <div class="about-intro__visual">
+                <div class="about-intro__image-placeholder">
+                    صورة المدينة
+                </div>
+            </div>
+
+        </div>
     </section>
 
+    <section class="about-timeline">
+        <div class="container">
 
-    <section>
-        <h2>Our Services</h2>
+            <div class="about-section-heading">
+                <span class="about-section-heading__eyebrow">
+                    مسيرتنا
+                </span>
 
-        <p>
-            We provide professional elevator installation, preventive maintenance,
-            modernization, repair, and technical support services.
-        </p>
+                <h2 class="about-section-heading__title">
+                    محطات رئيسية شكلت ريادتنا الحالية
+                </h2>
 
-        <a href="{% url 'services:service_list' %}">
-            View Our Services
-        </a>
+                <span class="about-section-heading__divider"></span>
+
+                <p class="about-section-heading__description">
+                    رحلة من العمل الهندسي والتطوير المستمر لبناء خبرة موثوقة في قطاع المصاعد.
+                </p>
+            </div>
+
+            <div class="timeline">
+
+                <article class="timeline-item">
+                    <div class="timeline-item__year">٢٠١٣</div>
+
+                    <div class="timeline-item__content">
+                        <h3>تأسيس بوابة المصاعد</h3>
+                        <p>
+                            انطلقت الشركة بهدف تقديم حلول هندسية موثوقة
+                            في تركيب وصيانة المصاعد.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-item__year">٢٠١٦</div>
+
+                    <div class="timeline-item__content">
+                        <h3>شراكات تقنية عالمية</h3>
+                        <p>
+                            توسعت الشركة عبر بناء شراكات مع موردين
+                            ومصنعين متخصصين في أنظمة المصاعد.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-item__year">٢٠٢٠</div>
+
+                    <div class="timeline-item__content">
+                        <h3>التوسع الإقليمي بالمملكة</h3>
+                        <p>
+                            توسعت خدماتنا لتشمل نطاقًا أكبر من المدن
+                            والقطاعات داخل المملكة.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-item__year">٢٠٢٤</div>
+
+                    <div class="timeline-item__content">
+                        <h3>اعتماد الحلول الرقمية الذكية</h3>
+                        <p>
+                            طورنا عمليات المتابعة والصيانة باستخدام
+                            أدوات وتقنيات حديثة لرفع كفاءة الخدمة.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
     </section>
 
+    <section class="vision-mission">
+        <div class="container vision-mission__grid">
 
-    <section>
-        <h2>Why Choose Elevator Gate?</h2>
+            <article class="vision-card">
+                <div class="vision-card__icon">
+                    ◉
+                </div>
 
-        <ul>
-            <li>Professional technical expertise</li>
-            <li>Commitment to safety and quality</li>
-            <li>Reliable maintenance and support</li>
-            <li>Solutions for different building types</li>
-            <li>Modern elevator technologies</li>
-        </ul>
+                <h3>رؤيتنا</h3>
+
+                <p>
+                    أن نكون خيارًا أولًا وموثوقًا في المملكة العربية السعودية
+                    لتقديم حلول المصاعد المتكاملة، بما يحقق أعلى معايير
+                    الأمان والجودة والاستدامة.
+                </p>
+            </article>
+
+            <article class="vision-card">
+                <div class="vision-card__icon">
+                    ◎
+                </div>
+
+                <h3>رسالتنا</h3>
+
+                <p>
+                    تقديم حلول مصاعد آمنة وفعالة تبدأ من الدراسة والتخطيط
+                    وتمتد إلى التركيب والصيانة والتحديث، عبر فريق هندسي
+                    متخصص وشراكات موثوقة.
+                </p>
+            </article>
+
+        </div>
     </section>
 
+    <section class="about-values">
+        <div class="container">
 
-    <section>
-        <h2>Our Projects</h2>
+            <div class="about-section-heading">
+                <span class="about-section-heading__eyebrow">
+                    مبادئنا وقيمنا
+                </span>
 
-        <p>
-            Explore some of the elevator installation and modernization projects
-            completed by Elevator Gate.
-        </p>
+                <h2 class="about-section-heading__title">
+                    القيم التي توجه قراراتنا اليومية
+                </h2>
 
-        <a href="{% url 'projects:project_list' %}">
-            View Our Projects
-        </a>
+                <span class="about-section-heading__divider"></span>
+
+                <p class="about-section-heading__description">
+                    نؤمن بأن جودة العمل تبدأ من وضوح المبادئ التي تحكم قراراتنا
+                    وعلاقتنا بعملائنا.
+                </p>
+            </div>
+
+            <article class="value-highlight">
+                <div class="value-highlight__icon">
+                    ✓
+                </div>
+
+                <div class="value-highlight__content">
+                    <h3>التطوير المستمر</h3>
+
+                    <p>
+                        نواكب أحدث تقنيات المصاعد وأساليب الصيانة والتشغيل،
+                        ونطوّر إجراءاتنا بشكل مستمر لضمان تقديم حلول أكثر
+                        كفاءة وأمانًا وموثوقية.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="safety-standards">
+        <div class="container safety-standards__grid">
+
+            <div class="safety-standards__content">
+                <span class="about-section-label">
+                    التزام بالأمان والجودة
+                </span>
+
+                <h2>
+                    معايير أمان نطبقها بحزم دون أي استثناء
+                </h2>
+
+                <p>
+                    نعتمد مجموعة واضحة من إجراءات الجودة والسلامة في جميع
+                    مراحل العمل، بدءًا من دراسة الموقع واختيار المكونات،
+                    وصولًا إلى التركيب والاختبار والتسليم النهائي.
+                </p>
+
+                <p>
+                    هدفنا أن يعمل كل مصعد بكفاءة واعتمادية مع الالتزام
+                    بالمتطلبات الفنية ومعايير السلامة المعتمدة.
+                </p>
+            </div>
+
+            <div class="safety-standards__visual">
+                <div class="safety-standards__image-placeholder">
+                    صورة معدات المصعد
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about-team">
+        <div class="container">
+
+            <div class="about-section-heading">
+                <span class="about-section-heading__eyebrow">
+                    الفريق الفني الهندسي
+                </span>
+
+                <h2 class="about-section-heading__title">
+                    خبرات هندسية رصينة تقود العمل الميداني
+                </h2>
+
+                <span class="about-section-heading__divider"></span>
+
+                <p class="about-section-heading__description">
+                    يقوم على خدمة مشاريعنا نخبة من المهندسين والفنيين
+                    ذوي الخبرات والاعتمادات الفنية المتخصصة.
+                </p>
+            </div>
+
+            <div class="about-team__grid">
+
+                <article class="team-card">
+                    <div class="team-card__image">
+                        صورة العضو
+                    </div>
+
+                    <div class="team-card__content">
+                        <h3>م. خالد الحربي</h3>
+                        <p>كبير المهندسين الفنيين</p>
+                    </div>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-card__image">
+                        صورة العضو
+                    </div>
+
+                    <div class="team-card__content">
+                        <h3>م. طارق عبد العزيز</h3>
+                        <p>مدير قسم السلامة والجودة</p>
+                    </div>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-card__image">
+                        صورة العضو
+                    </div>
+
+                    <div class="team-card__content">
+                        <h3>م. عمر السبيعي</h3>
+                        <p>مشرف فرق صيانة الطوارئ</p>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
     </section>
 
 {% endblock %}
