@@ -1,20 +1,315 @@
 {% extends "base.html" %}
-{% block title %}{{ service.title }}{% endblock %}
+{% load static %}
+
+{% block title %}
+{{ service.title }} | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/service-detail.css' %}">
+{% endblock %}
+
 {% block content %}
 
-    <h1>{{ service.title }}</h1>
-    <p>{{ service.short_description }}</p>
-    <h2>Service Features</h2>
+    <section class="service-detail-breadcrumb">
+        <div class="container">
+            <nav class="service-detail-breadcrumb__nav">
+                <a href="{% url 'pages:home' %}">الرئيسية</a>
+                <span>←</span>
 
-    <ul>
-        {% for feature in service.features.all %}
-            <div>
-                <h3>{{ feature.title }}</h3>
-                <p>{{ feature.description }}</p>
+                <a href="{% url 'services:service_list' %}">الخدمات</a>
+                <span>←</span>
+
+                <span>{{ service.title }}</span>
+            </nav>
+        </div>
+    </section>
+
+
+    <section class="service-detail">
+        <div class="container service-detail__layout">
+
+            <main class="service-detail__main">
+
+                <div class="service-detail__heading">
+
+                    <div class="service-detail__meta">
+                        <span class="service-detail__category">
+                            قسم الصيانة والدعم الفني
+                        </span>
+
+                        <span class="service-detail__badge">
+                            خدمة معتمدة
+                        </span>
+                    </div>
+
+                    <h1>{{ service.title }}</h1>
+
+                    <p class="service-detail__lead">
+                        {{ service.description }}
+                    </p>
+
+                </div>
+
+
+                <div class="service-detail__image">
+
+                    {% if service.image %}
+                        <img
+                            src="{{ service.image.url }}"
+                            alt="{{ service.title }}"
+                        >
+                    {% else %}
+                        <div class="service-detail__image-placeholder">
+                            صورة الخدمة
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <section class="service-description">
+
+                    <h2>شرح الخدمة وأهدافها</h2>
+
+                    <p>
+                        {{ service.description }}
+                    </p>
+
+                </section>
+
+
+                <section class="service-features">
+
+                    <h2>مزايا وفوائد الخدمة</h2>
+
+                    <div class="service-features__grid">
+
+                        {% for feature in service.features.all %}
+
+                            <article class="service-feature">
+
+                                <div class="service-feature__icon">
+                                    ✓
+                                </div>
+
+                                <div>
+                                    <h3>{{ feature.title }}</h3>
+
+                                    {% if feature.description %}
+                                        <p>{{ feature.description }}</p>
+                                    {% endif %}
+                                </div>
+
+                            </article>
+
+                        {% empty %}
+
+                            <p class="service-features__empty">
+                                لا توجد مزايا مضافة لهذه الخدمة حاليًا.
+                            </p>
+
+                        {% endfor %}
+
+                    </div>
+
+                </section>
+
+                <section class="maintenance-visit">
+
+                    <h2>
+                        ما تشتمل عليه زيارة الصيانة الدورية:
+                    </h2>
+
+                    <div class="maintenance-visit__grid">
+
+                        <ul>
+                            <li>فحص واختبار لوحة التحكم والأنظمة الكهربائية</li>
+                            <li>معاينة محرك المصعد وقياس مستوى الزيوت</li>
+                            <li>اختبار أجهزة الإنذار والاتصال الداخلي</li>
+                            <li>فحص كابلات الجر والبكرات والمسارات الفنية</li>
+                        </ul>
+
+                        <ul>
+                            <li>فحص وتنظيف مجاري وميكانيكية الأبواب</li>
+                            <li>اختبار فرامل الطوارئ وحساسات الوزن</li>
+                            <li>تشحيم المكونات الميكانيكية الرئيسية</li>
+                            <li>توفير تقرير فني شامل بالنتائج والتوصيات</li>
+                        </ul>
+
+                    </div>
+
+                </section>
+
+                <section class="served-buildings">
+
+                    <h2>المنشآت والمباني التي نخدمها</h2>
+
+                    <div class="served-buildings__tags">
+
+                        <span class="served-buildings__tag">
+                            الفنادق وقطاع الضيافة
+                        </span>
+
+                        <span class="served-buildings__tag">
+                            المباني والأبراج التجارية
+                        </span>
+
+                        <span class="served-buildings__tag">
+                            المجمعات والفلل السكنية
+                        </span>
+
+                        <span class="served-buildings__tag">
+                            المراكز والمستشفيات الطبية
+                        </span>
+
+                        <span class="served-buildings__tag">
+                            المنشآت التعليمية والمدارس
+                        </span>
+
+                    </div>
+
+                </section>
+
+                <section class="service-faq">
+
+                    <h2>الأسئلة الشائعة حول الصيانة</h2>
+
+                    <div class="service-faq__list">
+
+                        <details class="service-faq__item" open>
+                            <summary>
+                                كم مرة يحتاج المصعد للفحص والصيانة الدورية الوقائية؟
+                            </summary>
+
+                            <p>
+                                يوصى بتنفيذ فحص وصيانة دورية منتظمة وفق حالة المصعد
+                                وعدد مرات الاستخدام، مع الالتزام بجدول الصيانة المعتمد
+                                للحفاظ على كفاءة التشغيل والسلامة.
+                            </p>
+                        </details>
+
+
+                        <details class="service-faq__item">
+                            <summary>
+                                هل توفر الشركة عقود صيانة سنوية معتمدة من الدفاع المدني؟
+                            </summary>
+
+                            <p>
+                                نوفر برامج وعقود صيانة دورية تشمل الفحص الوقائي
+                                والمتابعة الفنية والاستجابة للأعطال وفق متطلبات الخدمة.
+                            </p>
+                        </details>
+
+
+                        <details class="service-faq__item">
+                            <summary>
+                                ما هي الإجراءات المتبعة في حالات الطوارئ واحتجاز الركاب؟
+                            </summary>
+
+                            <p>
+                                يتم التعامل مع البلاغات الطارئة بسرعة، وتحديد سبب العطل
+                                واتخاذ إجراءات آمنة لتحرير الركاب وإعادة المصعد للخدمة.
+                            </p>
+                        </details>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+            <aside class="service-request-card">
+
+                <span class="service-request-card__eyebrow">
+                    طلب خدمة فورية
+                </span>
+
+                <h2>
+                    اطلب صيانة مصاعدك
+                </h2>
+
+                <p>
+                    احصل على صيانة دورية متخصصة ومضمونة تحمي
+                    مصاعدك وتوفر استجابة سريعة عند الحاجة.
+                </p>
+
+                <div class="service-request-card__divider"></div>
+
+                <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                    اطلب هذه الخدمة
+                </a>
+
+                <a href="#" class="btn btn--outline service-request-card__whatsapp">
+                    تواصل عبر الواتساب
+                </a>
+
+                <p class="service-request-card__phone">
+                    أو اتصل بنا مباشرة:
+                    <span>+966 11 456 7890</span>
+                </p>
+
+            </aside>
+
+        </div>
+    </section>
+
+
+    <section class="related-services">
+        <div class="container">
+
+            <div class="related-services__heading">
+                <span>خدمات أخرى قد تهمك</span>
+
+                <h2>
+                    حلول متكاملة لجميع متطلبات مصاعدك
+                </h2>
+
+                <div class="related-services__divider"></div>
+
+                <p>
+                    نحرص على تغطية كافة احتياجاتك لضمان تنقل عمودي
+                    انسيابي وآمن بأعلى معايير الجودة والاحترافية.
+                </p>
             </div>
-            {% empty %}
-            <p>No features available for this service.</p>
-        {% endfor %}
-    </ul>
+
+
+            <div class="related-services__grid">
+
+                {% for related_service in other_services %}
+
+                    <article class="related-service-card">
+
+                        <div class="related-service-card__icon">
+                            ⚙
+                        </div>
+
+                        <h3>
+                            {{ related_service.title }}
+                        </h3>
+
+                        <p>
+                            {{ related_service.description|truncatewords:18 }}
+                        </p>
+
+                        <a href="{% url 'services:service_detail' related_service.slug %}">
+                            عرض التفاصيل
+                            <span>←</span>
+                        </a>
+
+                    </article>
+
+                {% empty %}
+
+                    <p class="related-services__empty">
+                        لا توجد خدمات إضافية متاحة حاليًا.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
 
 {% endblock %}

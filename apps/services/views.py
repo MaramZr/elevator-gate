@@ -19,8 +19,16 @@ def service_detail(request, slug):
         is_active=True,
     )
 
+    other_services = (
+        Service.objects
+        .filter(is_active=True)
+        .exclude(pk=service.pk)
+        .order_by("order")[:3]
+    )
+
     context = {
         "service": service,
+        "other_services": other_services,
     }
 
     return render(request, "services/service_detail.html", context)
