@@ -1,24 +1,201 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    Services | Elevator Gate
+الخدمات | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/services.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <h1>Services</h1>
+    <section class="services-hero">
+        <div class="container">
 
-    {% for service in services %}
-        <div>
-            <h3>
-                <a href="{% url 'services:service_detail' service.slug %}">
-                    {{ service.title }}
-                </a>
-            </h3>
-            <p>{{ service.short_description }}</p>
+            <div class="services-hero__breadcrumb">
+                <a href="{% url 'pages:home' %}">الرئيسية</a>
+                <span>/</span>
+                <span>الخدمات</span>
+            </div>
+
+            <div class="services-hero__content">
+                <h1>
+                    خدماتنا الشاملة والمتخصصة
+                </h1>
+
+                <p>
+                    نلتزم بتقديم أفضل الحلول الهندسية المعتمدة لتركيب
+                    وتوريد وصيانة كافة أنواع المصاعد والسلالم الكهربائية
+                    في المملكة، بأعلى معايير السلامة والجودة العالمية.
+                </p>
+            </div>
+
         </div>
-    {% empty %}
-        <p>No services available.</p>
-    {% endfor %}
+    </section>
+
+
+    <section class="services-overview">
+        <div class="container">
+
+
+            <div class="services-section-heading">
+                <span class="services-section-heading__eyebrow">
+                    ماذا نقدم
+                </span>
+
+                <h2 class="services-section-heading__title">
+                    حلول مصاعد شاملة وموثوقة
+                </h2>
+
+                <span class="services-section-heading__divider"></span>
+
+                <p class="services-section-heading__description">
+                    نقدم باقة متكاملة من خدمات المصاعد المتخصصة لضمان
+                    حركة عمودية انسيابية وآمنة في كافة المنشآت
+                    والمباني السكنية والتجارية.
+                </p>
+            </div>
+
+            <div class="services-grid">
+
+                {% for service in services %}
+                    <article class="service-card">
+
+                        <div class="service-card__icon">
+                            ⚙
+                        </div>
+
+                        <h3 class="service-card__title">
+                            {{ service.title }}
+                        </h3>
+
+                        <p class="service-card__description">
+                            {{ service.description|truncatewords:22 }}
+                        </p>
+
+                        <a
+                            href="{% url 'services:service_detail' service.slug %}"
+                            class="service-card__link"
+                        >
+                            عرض التفاصيل
+                            <span>←</span>
+                        </a>
+
+                    </article>
+
+                {% empty %}
+
+                    <p class="services-empty">
+                        لا توجد خدمات متاحة حاليًا.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="services-process">
+        <div class="container">
+
+            <div class="services-section-heading">
+                <span class="services-section-heading__eyebrow">
+                    خطوات العمل
+                </span>
+
+                <h2 class="services-section-heading__title">
+                    منهجية هندسية واضحة ومدروسة
+                </h2>
+
+                <span class="services-section-heading__divider"></span>
+
+                <p class="services-section-heading__description">
+                    نتبع خطوات منظمة تبدأ من طلب الخدمة وحتى التسليم
+                    والصيانة الدورية لضمان جودة وأمان كافة أعمالنا.
+                </p>
+            </div>
+
+            <div class="services-process__steps">
+
+                <article class="process-step">
+                    <div class="process-step__number">٠١</div>
+                    <h3>استقبال الطلب</h3>
+                    <p>فهم احتياج العميل وتحديد نوع الخدمة المطلوبة.</p>
+                </article>
+
+                <article class="process-step">
+                    <div class="process-step__number">٠٢</div>
+                    <h3>المعاينة الفنية</h3>
+                    <p>زيارة الموقع ودراسة حالة المصعد ومتطلبات التنفيذ.</p>
+                </article>
+
+                <article class="process-step">
+                    <div class="process-step__number">٠٣</div>
+                    <h3>تقديم الحل</h3>
+                    <p>إعداد الحل المناسب وعرض السعر الفني والمالي.</p>
+                </article>
+
+                <article class="process-step">
+                    <div class="process-step__number">٠٤</div>
+                    <h3>التنفيذ والتركيب</h3>
+                    <p>تنفيذ الأعمال وفق المعايير الفنية وخطة المشروع.</p>
+                </article>
+
+                <article class="process-step">
+                    <div class="process-step__number">٠٥</div>
+                    <h3>الاختبار والتسليم</h3>
+                    <p>فحص النظام والتأكد من جاهزيته قبل التشغيل.</p>
+                </article>
+
+                <article class="process-step">
+                    <div class="process-step__number">٠٦</div>
+                    <h3>المتابعة والصيانة</h3>
+                    <p>متابعة الأداء وتنفيذ الصيانة الوقائية الدورية.</p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="maintenance-contracts">
+        <div class="container maintenance-contracts__grid">
+
+            <div class="maintenance-contracts__content">
+                <span class="services-section-heading__eyebrow">
+                    عقود الصيانة الدورية
+                </span>
+
+                <h2>
+                    حافظ على سلامة مستخدميك ببرامج صيانة معتمدة
+                </h2>
+
+                <p>
+                    نوفر عقود صيانة دورية ووقائية مطابقة تمامًا لشروط
+                    الدفاع المدني السعودي، نضمن لك زيارات فحص مجدولة،
+                    واستجابة طارئة للأعطال على مدار 24 ساعة، مع توفير
+                    قطع غيار أصلية لضمان كفاءة تشغيل المصعد بأمان تام
+                    وحمايته من التوقف المفاجئ.
+                </p>
+
+                <ul class="maintenance-contracts__list">
+                    <li>زيارات فحص دورية منتظمة</li>
+                    <li>استجابة فورية للأعطال الطارئة وحالات الاحتجاز</li>
+                    <li>توفير قطع الغيار الأصلية مع الضمان المعتمد</li>
+                    <li>تقارير دورية معتمدة للجهات المختصة والدفاع المدني</li>
+                </ul>
+            </div>
+
+            <div class="maintenance-contracts__visual">
+                <div class="maintenance-contracts__image-placeholder">
+                    صورة فنيي الصيانة
+                </div>
+            </div>
+
+        </div>
+    </section>
 
 {% endblock %}
