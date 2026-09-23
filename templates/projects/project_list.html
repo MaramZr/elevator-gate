@@ -1,26 +1,203 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    Projects | Elevator Gate
+المشاريع | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/projects.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <h1>Projects</h1>
+    <section class="projects-hero">
+        <div class="container">
 
-    {% for project in projects %}
-        <div>
-            <a href="{% url 'projects:project_detail' slug=project.slug %}">
-                <h2>{{ project.title }}</h2>
-            </a>
-            <p>{{ project.short_description }}</p>
+            <div class="projects-hero__breadcrumb">
+                <a href="{% url 'pages:home' %}">الرئيسية</a>
+                <span>/</span>
+                <span>المشاريع</span>
+            </div>
 
-            {% if project.category %}
-                <p>Category: {{ project.category }}</p>
-            {% endif %}
+            <div class="projects-hero__content">
+                <h1>المشاريع المنفذة</h1>
+
+                <p>
+                    نستعرض نماذج متميزة من مشاريع تركيب وصيانة وتحديث المصاعد
+                    للمباني السكنية والتجارية والمنشآت بمختلف مدن المملكة.
+                </p>
+            </div>
+
         </div>
-    {% empty %}
-        <p>No projects available.</p>
-    {% endfor %}
+    </section>
+
+
+    <section class="projects-gallery">
+        <div class="container">
+
+            <div class="projects-section-heading">
+                <span class="projects-section-heading__eyebrow">
+                    معرض أعمالنا
+                </span>
+
+                <h2 class="projects-section-heading__title">
+                    مشاريع نفخر بتجهيزها وإدارتها فنيًا
+                </h2>
+
+                <span class="projects-section-heading__divider"></span>
+            </div>
+
+
+            <div class="projects-filters">
+
+                <a
+                    href="{% url 'projects:project_list' %}"
+                    class="projects-filter
+                    {% if not active_category %}projects-filter--active{% endif %}"
+                >
+                    جميع المشاريع
+                </a>
+
+                {% for category in categories %}
+                    <a
+                        href="?category={{ category.slug }}"
+                        class="projects-filter
+                        {% if active_category == category.slug %}
+                            projects-filter--active
+                        {% endif %}
+                        "
+                    >
+                        {{ category.name }}
+                    </a>
+                {% endfor %}
+
+            </div>
+
+            <div class="projects-grid">
+
+                {% for project in projects %}
+
+                    <article class="project-card">
+
+                        <div class="project-card__visual">
+
+                            {% if project.image %}
+                                <img
+                                    src="{{ project.image.url }}"
+                                    alt="{{ project.title }}"
+                                >
+                            {% else %}
+                                <div class="project-card__placeholder">
+                                    صورة المشروع
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="project-card__body">
+
+                            <div class="project-card__meta">
+
+                                {% if project.category %}
+                                    <span>{{ project.category.name }}</span>
+                                {% endif %}
+
+                                {% if project.service %}
+                                    <span>{{ project.service.title }}</span>
+                                {% endif %}
+
+                            </div>
+
+                            <h3 class="project-card__title">
+                                {{ project.title }}
+                            </h3>
+
+                            {% if project.service %}
+                                <p class="project-card__service">
+                                    الخدمة المقدمة:
+                                    <strong>{{ project.service.title }}</strong>
+                                </p>
+                            {% endif %}
+
+                            {% if project.description %}
+                                <p class="project-card__description">
+                                    {{ project.description|truncatewords:22 }}
+                                </p>
+                            {% endif %}
+
+                            <a
+                                href="{% url 'projects:project_detail' project.slug %}"
+                                class="project-card__link"
+                            >
+                                عرض المشروع
+                                <span>←</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                {% empty %}
+
+                    <p class="projects-empty">
+                        لا توجد مشاريع متاحة حاليًا.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+            {% if is_paginated %}
+
+                <nav class="projects-pagination" aria-label="صفحات المشاريع">
+
+                    {% if page_obj.has_previous %}
+                        <a
+                            href="?{% if active_category %}category={{ active_category }}&{% endif %}page={{ page_obj.previous_page_number }}"
+                            class="projects-pagination__link"
+                        >
+                            السابق
+                        </a>
+                    {% endif %}
+
+
+                    {% for page_number in paginator.page_range %}
+
+                        {% if page_obj.number == page_number %}
+
+                            <span class="projects-pagination__link projects-pagination__link--active">
+                                {{ page_number }}
+                            </span>
+
+                        {% else %}
+
+                            <a
+                                href="?{% if active_category %}category={{ active_category }}&{% endif %}page={{ page_number }}"
+                                class="projects-pagination__link"
+                            >
+                                {{ page_number }}
+                            </a>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+
+                    {% if page_obj.has_next %}
+                        <a
+                            href="?{% if active_category %}category={{ active_category }}&{% endif %}page={{ page_obj.next_page_number }}"
+                            class="projects-pagination__link"
+                        >
+                            التالي
+                        </a>
+                    {% endif %}
+
+                </nav>
+
+            {% endif %}
+
+        </div>
+    </section>
 
 {% endblock %}

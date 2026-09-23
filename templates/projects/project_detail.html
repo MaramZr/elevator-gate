@@ -1,17 +1,446 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    {{ project.title }} | Elevator Gate
+{{ project.title }} | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/project-detail.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <h1>{{ project.title }}</h1>
+    <section class="project-detail-hero">
 
-    {% if project.category %}
-        <p>Category: {{ project.category }}</p>
-    {% endif %}
+        <div class="project-detail-hero__breadcrumb-wrap">
+            <div class="container">
+                <nav class="project-detail-hero__breadcrumb">
 
-    <p>{{ project.short_description }}</p>
+                    <a href="{% url 'pages:home' %}">
+                        الرئيسية
+                    </a>
+
+                    <span>←</span>
+
+                    <a href="{% url 'projects:project_list' %}">
+                        المشاريع
+                    </a>
+
+                    <span>←</span>
+
+                    <span>
+                        {{ project.title }}
+                    </span>
+
+                </nav>
+            </div>
+        </div>
+
+
+        <div class="container project-detail-hero__grid">
+
+            <div class="project-detail-hero__content">
+
+                {% if project.service %}
+                    <span class="project-detail-hero__service">
+                        {{ project.service.title }}
+                    </span>
+                {% endif %}
+
+                <h1>
+                    {{ project.title }}
+                </h1>
+
+                {% if project.description %}
+                    <p>
+                        {{ project.description }}
+                    </p>
+                {% endif %}
+
+                <div class="project-detail-hero__badges">
+
+                    <span class="project-detail-hero__success">
+                        ✓ تم التسليم بنجاح
+                    </span>
+
+                    <span class="project-detail-hero__featured">
+                        مشروع نموذجي
+                    </span>
+
+                </div>
+
+                <a
+                    href="{% url 'contact:contact' %}"
+                    class="btn btn--primary"
+                >
+                    اطلب مشروعًا مشابهًا
+                </a>
+
+            </div>
+
+
+            <div class="project-detail-hero__visual">
+
+                {% if project.image %}
+                    <img
+                        src="{{ project.image.url }}"
+                        alt="{{ project.title }}"
+                    >
+                {% else %}
+                    <div class="project-detail-hero__placeholder">
+                        صورة المشروع
+                    </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="project-details-content">
+        <div class="container project-details-content__grid">
+
+            <div class="project-details-content__main">
+
+                <!-- Overview -->
+                <section class="project-overview__content">
+
+                    <h2>نظرة عامة على المشروع</h2>
+                    <span class="project-content-divider"></span>
+
+                    {% if project.description %}
+                        <p>
+                            {{ project.description }}
+                        </p>
+                    {% endif %}
+
+                </section>
+
+
+                <!-- Challenge -->
+                <section class="project-challenge">
+
+                    <h2>التحدي والوضع قبل البدء</h2>
+                    <span class="project-content-divider"></span>
+
+                    <p>
+                        كان المبنى يعاني من مجموعة من المشكلات الفنية
+                        والتشغيلية التي أثرت على كفاءة المصاعد وتجربة المستخدمين.
+                    </p>
+
+                    <ul class="project-challenge__list">
+                        <li>تقادم الأنظمة والمكونات الميكانيكية.</li>
+                        <li>تكرار الأعطال المفاجئة وتوقف المصاعد.</li>
+                        <li>الحاجة إلى تحسين معايير السلامة والأمان.</li>
+                        <li>ارتفاع استهلاك الطاقة وضعف كفاءة المكونات.</li>
+                        <li>وجود اهتزازات واضحة أثناء حركة المصعد.</li>
+                    </ul>
+
+                </section>
+
+
+                <!-- Solution -->
+                <section class="project-solution">
+
+                    <h2>الحل المقترح والمنفذ</h2>
+                    <span class="project-content-divider"></span>
+
+                    <p>
+                        بعد إجراء دراسة فنية دقيقة واختبارات شاملة،
+                        تم تنفيذ مجموعة من الحلول الهندسية المتكاملة.
+                    </p>
+
+                    <ul class="project-solution__list">
+                        <li>إجراء فحص فني شامل واختبار سلامة الهيكل.</li>
+                        <li>تحديث لوحة التحكم واستبدالها بنظام تحكم أكثر كفاءة.</li>
+                        <li>استبدال المكونات الميكانيكية التالفة.</li>
+                        <li>تحسين الأبواب وتحديث أنظمة الأمان.</li>
+                        <li>تحديث أنظمة الطوارئ والربط مع أنظمة المراقبة.</li>
+                        <li>تحسين التصميم الداخلي للكابينة.</li>
+                        <li>إجراء الاختبارات النهائية والتأكد من جاهزية التشغيل.</li>
+                    </ul>
+
+                </section>
+
+            </div>
+
+
+            <!-- Details Card -->
+            <aside class="project-details-card">
+
+                <h2>بطاقة تفاصيل المشروع</h2>
+
+                <div class="project-details-card__list">
+
+                    <div class="project-details-card__item">
+                        <span>نوع المشروع</span>
+                        <strong>
+                            {% if project.category %}
+                                {{ project.category.name }}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </strong>
+                    </div>
+
+                    <div class="project-details-card__item">
+                        <span>نوع المبنى</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="project-details-card__item">
+                        <span>الموقع الجغرافي</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="project-details-card__item">
+                        <span>الخدمة المستخدمة</span>
+                        <strong>
+                            {% if project.service %}
+                                {{ project.service.title }}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </strong>
+                    </div>
+
+                    <div class="project-details-card__item">
+                        <span>تصنيف المشروع</span>
+                        <strong>
+                            {% if project.is_featured %}
+                                مشروع نموذجي معتمد
+                            {% else %}
+                                مشروع منفذ
+                            {% endif %}
+                        </strong>
+                    </div>
+
+                    <div class="project-details-card__item">
+                        <span>مدة التنفيذ</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="project-details-card__item">
+                        <span>عدد المصاعد</span>
+                        <strong>—</strong>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+    </section>
+
+    <section class="project-scope">
+        <div class="container">
+
+            <div class="project-section-heading">
+                <h2>نطاق العمل والتوريد</h2>
+                <span></span>
+            </div>
+
+            <div class="project-scope__items">
+
+                <span class="project-scope__item">
+                    صيانة الأبواب ومحركات الفتح
+                </span>
+
+                <span class="project-scope__item">
+                    فحص الأنظمة الكهربائية الشامل
+                </span>
+
+                <span class="project-scope__item">
+                    تحديث نظام التحكم الرئيسي
+                </span>
+
+                <span class="project-scope__item">
+                    المعاينة والتقييم الفني
+                </span>
+
+                <span class="project-scope__item">
+                    الاختبار النهائي والشهادة
+                </span>
+
+                <span class="project-scope__item">
+                    تطوير الكابينة الداخلي والإنارة
+                </span>
+
+                <span class="project-scope__item">
+                    اختبار أنظمة فرامل السلامة
+                </span>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="project-process">
+        <div class="container">
+
+            <div class="project-section-heading">
+                <h2>خطة ومراحل التنفيذ التشغيلي</h2>
+                <span></span>
+            </div>
+
+            <div class="project-process__steps">
+
+                <article class="project-process__step project-process__step--active">
+                    <div class="project-process__number">١</div>
+                    <h3>المعاينة</h3>
+                </article>
+
+                <article class="project-process__step">
+                    <div class="project-process__number">٢</div>
+                    <h3>التقييم</h3>
+                </article>
+
+                <article class="project-process__step">
+                    <div class="project-process__number">٣</div>
+                    <h3>اعتماد الحل</h3>
+                </article>
+
+                <article class="project-process__step">
+                    <div class="project-process__number">٤</div>
+                    <h3>التجهيز</h3>
+                </article>
+
+                <article class="project-process__step">
+                    <div class="project-process__number">٥</div>
+                    <h3>التنفيذ</h3>
+                </article>
+
+                <article class="project-process__step">
+                    <div class="project-process__number">٦</div>
+                    <h3>الاختبار</h3>
+                </article>
+
+                <article class="project-process__step">
+                    <div class="project-process__number">٧</div>
+                    <h3>التسليم</h3>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="related-projects">
+        <div class="container">
+
+            <div class="related-projects__heading">
+
+                <span class="related-projects__eyebrow">
+                    المزيد من قصص النجاح
+                </span>
+
+                <h2>
+                    مشاريع أخرى قد تهمك
+                </h2>
+
+                <span class="related-projects__divider"></span>
+
+            </div>
+
+
+            <div class="related-projects__grid">
+
+                {% for related_project in related_projects %}
+
+                    <article class="related-project-card">
+
+                        <div class="related-project-card__image">
+
+                            {% if related_project.image %}
+                                <img
+                                    src="{{ related_project.image.url }}"
+                                    alt="{{ related_project.title }}"
+                                >
+                            {% else %}
+                                <div class="related-project-card__placeholder">
+                                    صورة المشروع
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="related-project-card__body">
+
+                            <div class="related-project-card__meta">
+
+                                {% if related_project.category %}
+                                    <span>
+                                        {{ related_project.category.name }}
+                                    </span>
+                                {% endif %}
+
+                                {% if related_project.service %}
+                                    <span>
+                                        {{ related_project.service.title }}
+                                    </span>
+                                {% endif %}
+
+                            </div>
+
+
+                            <h3>
+                                {{ related_project.title }}
+                            </h3>
+
+
+                            {% if related_project.service %}
+                                <p class="related-project-card__service">
+                                    الخدمة المقدمة:
+                                    {{ related_project.service.title }}
+                                </p>
+                            {% endif %}
+
+
+                            <a href="{% url 'projects:project_detail' related_project.slug %}">
+                                عرض المشروع
+                                <span>←</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                {% empty %}
+
+                    <p class="related-projects__empty">
+                        لا توجد مشاريع أخرى متاحة حاليًا.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="related-projects__navigation">
+
+                <a href="{% url 'projects:project_list' %}">
+                    ← المشروع السابق
+                </a>
+
+                <a
+                    href="{% url 'projects:project_list' %}"
+                    class="related-projects__all"
+                >
+                    العودة إلى جميع المشاريع
+                </a>
+
+                <a href="{% url 'projects:project_list' %}">
+                    المشروع التالي →
+                </a>
+
+            </div>
+
+        </div>
+    </section>
 
 {% endblock %}
