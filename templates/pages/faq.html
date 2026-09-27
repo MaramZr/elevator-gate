@@ -1,22 +1,205 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    FAQ | Elevator Gate
+الأسئلة الشائعة | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/faq.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <section>
-        <h1>Frequently Asked Questions</h1>
+<section class="faq-hero">
 
-        {% for faq in faqs %}
-            <div>
-                <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer }}</p>
+    <div class="container">
+
+        <div class="faq-hero__content">
+
+            <h1>الأسئلة الشائعة</h1>
+
+            <p>
+                إجابات شاملة على أكثر الأسئلة تكرارًا حول خدمات تركيب وصيانة
+                وتحديث المصاعد في المملكة العربية السعودية
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="faq-breadcrumb">
+
+    <div class="container">
+
+        <nav class="faq-breadcrumb__nav" aria-label="مسار التنقل">
+
+            <a href="{% url 'pages:home' %}">
+                الرئيسية
+            </a>
+
+            <span>←</span>
+
+            <span aria-current="page">
+                الأسئلة الشائعة
+            </span>
+
+        </nav>
+
+    </div>
+
+</section>
+
+
+<section class="faq-main">
+
+    <div class="container">
+
+        <div class="faq-main__heading">
+
+            <h2>كيف يمكننا مساعدتك اليوم؟</h2>
+
+            <p>
+                جمعنا لكم أبرز الاستفسارات التي يطرحها عملاؤنا حول خدمات المصاعد.
+                إذا لم تجد إجابة سؤالك هنا، لا تتردد في التواصل مع فريقنا الفني
+                والمبيعات مباشرة لمساعدتك على الفور.
+            </p>
+
+        </div>
+
+        <div class="faq-tools">
+
+            <form class="faq-search" role="search">
+
+                <input
+                    type="search"
+                    id="faq-search-input"
+                    placeholder="ابحث في الأسئلة الشائعة..."
+                    aria-label="البحث في الأسئلة الشائعة"
+                >
+
+                <span class="faq-search__icon" aria-hidden="true">
+                    ⌕
+                </span>
+
+            </form>
+
+
+            <div class="faq-filters" aria-label="تصنيفات الأسئلة">
+
+                <button
+                    type="button"
+                    class="faq-filter faq-filter--active"
+                    data-category="all"
+                >
+                    الكل
+                </button>
+
+                <button type="button" class="faq-filter" data-category="تركيب المصاعد">
+                    تركيب المصاعد
+                </button>
+
+                <button type="button" class="faq-filter" data-category="صيانة المصاعد">
+                    صيانة المصاعد
+                </button>
+
+                <button type="button" class="faq-filter" data-category="تحديث المصاعد">
+                    تحديث المصاعد
+                </button>
+
+                <button type="button" class="faq-filter" data-category="السلامة والمعايير">
+                    السلامة والمعايير
+                </button>
+
+                <button type="button" class="faq-filter" data-category="التكاليف والضمان">
+                    التكاليف والضمان
+                </button>
+
+                <button type="button" class="faq-filter" data-category="الدعم الفني">
+                    الدعم الفني
+                </button>
+
             </div>
-        {% empty %}
-            <p>No FAQs available.</p>
-        {% endfor %}
-    </section>
+
+        </div>
+
+        <div class="faq-list">
+
+            {% for faq in faqs %}
+
+                <details
+                    class="faq-item"
+                    data-category="{{ faq.category }}"
+                >
+
+                    <summary class="faq-item__question">
+
+                        <span>
+                            {{ faq.question }}
+                        </span>
+
+                        <span class="faq-item__toggle" aria-hidden="true">
+                            +
+                        </span>
+
+                    </summary>
+
+                    <div class="faq-item__answer">
+                        <p>
+                            {{ faq.answer }}
+                        </p>
+                    </div>
+
+                </details>
+
+            {% empty %}
+
+                <p class="faq-empty">
+                    لا توجد أسئلة شائعة حاليًا.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+        <section class="faq-help">
+
+            <div class="faq-help__content">
+
+                <h2>لم تجد إجابة سؤالك؟</h2>
+
+                <p>
+                    فريقنا الفني والهندسي متواجد لتقديم الدعم والإجابة
+                    على كافة استفساراتكم الفنية والمالية.
+                </p>
+
+                <div class="faq-help__actions">
+
+                    <a
+                        href="{% url 'contact:contact' %}"
+                        class="btn btn--primary"
+                    >
+                        تواصل معنا الآن
+                    </a>
+
+                    <a
+                        href="tel:+966XXXXXXXXX"
+                        class="btn btn--outline"
+                    >
+                        اتصل بنا
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
 
 {% endblock %}

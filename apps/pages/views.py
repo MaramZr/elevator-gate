@@ -34,7 +34,7 @@ def testimonials(request):
     return render(request, "pages/testimonials.html", context)
 
 def faq(request):
-    faqs = FAQ.objects.filter(is_active=True).order_by("order")
+    faqs = FAQ.objects.filter(is_active=True).order_by("order", "created_at")
     context = {
         "faqs": faqs,
     }
