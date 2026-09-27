@@ -1,16 +1,52 @@
 from django import forms
+
 from .models import ContactMessage
+
 
 class ContactMessageForm(forms.ModelForm):
     class Meta:
         model = ContactMessage
-        fields = ['service', 'name', 'email', 'phone', 'subject', 'message']
+
+        fields = [
+            "name",
+            "email",
+            "phone",
+            "service",
+            "subject",
+            "message",
+        ]
+
         widgets = {
-            'service': forms.Select(attrs={'class': 'form-control'}),
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control'}),
-            'subject': forms.TextInput(attrs={'class': 'form-control'}),
-            'message': forms.Textarea(attrs={'class': 'form-control'}),
+            "name": forms.TextInput(
+                attrs={
+                    "placeholder": "أدخل اسمك الكامل",
+                }
+            ),
+
+            "email": forms.EmailInput(
+                attrs={
+                    "placeholder": "username@domain.com",
+                }
+            ),
+
+            "phone": forms.TextInput(
+                attrs={
+                    "placeholder": "05xxxxxxxx",
+                }
+            ),
+
+            "service": forms.Select(),
+
+            "subject": forms.TextInput(
+                attrs={
+                    "placeholder": "موضوع الاستفسار",
+                }
+            ),
+
+            "message": forms.Textarea(
+                attrs={
+                    "placeholder": "اكتب هنا تفاصيل طلبك لمساعدتنا في خدمتك بشكل أفضل...",
+                    "rows": 6,
+                }
+            ),
         }
-        

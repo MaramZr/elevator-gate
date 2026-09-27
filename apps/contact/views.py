@@ -1,26 +1,35 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
+
 from .forms import ContactMessageForm
 
-# Create your views here.
+
 def contact(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ContactMessageForm(request.POST)
+
         if form.is_valid():
             form.save()
+
             messages.success(
                 request,
-                "You have new messages has been sent successfully."
+                "تم استلام طلبك بنجاح."
             )
 
-            return redirect("contact:contact")  # Redirect to a success page after saving the form
+            return redirect("contact:success")
+
     else:
         form = ContactMessageForm()
 
     context = {
         "form": form,
     }
-    return render(request, 'contact/contact.html', context)
-            
-            
-        
+
+    return render(
+        request,
+        "contact/contact.html",
+        context,
+    )
+
+def success(request):
+    return render(request, "contact/success.html")

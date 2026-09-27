@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+تم استلام طلبك بنجاح | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/contact-success.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="contact-success">
+
+    <div class="container">
+
+        <div class="contact-success__card">
+
+            <div class="contact-success__icon">
+                ✓
+            </div>
+
+            <h1>
+                تم استلام طلبك بنجاح
+            </h1>
+
+            <p>
+                شكرًا لتواصلك معنا. سيتواصل معك الفريق في أقرب وقت
+                لمتابعة تفاصيل الطلب.
+            </p>
+
+            <div class="contact-success__actions">
+
+                <a
+                    href="{% url 'pages:home' %}"
+                    class="btn btn--outline"
+                >
+                    العودة إلى الرئيسية
+                </a>
+
+                <a
+                    href="{% url 'services:service_list' %}"
+                    class="btn btn--primary"
+                >
+                    استعراض الخدمات
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

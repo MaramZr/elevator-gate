@@ -1,22 +1,424 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    Contact | Elevator Gate
+تواصل معنا | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/contact.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <section>
-        <h1>Contact Us</h1>
-        <form method="post">
-            {% csrf_token %}
+    <section class="contact-hero">
 
-            {{ form.as_p }}
+        <div class="container">
 
-            <button type="submit">
-                Send Message
-            </button>
-        </form>
+            <div class="contact-hero__content">
+
+                <h1>تواصل معنا</h1>
+
+                <p>
+                    سواء كنت بحاجة إلى عرض سعر أو طلب صيانة أو معاينة ميدانية
+                    أو استفسار تقني — فريقنا جاهز لخدمتك في أي وقت
+                </p>
+
+            </div>
+
+        </div>
+
     </section>
 
+
+    <section class="contact-breadcrumb">
+
+        <div class="container">
+
+            <nav class="contact-breadcrumb__nav" aria-label="مسار التنقل">
+
+                <a href="{% url 'pages:home' %}">
+                    الرئيسية
+                </a>
+
+                <span>←</span>
+
+                <span aria-current="page">
+                    تواصل معنا
+                </span>
+
+            </nav>
+
+        </div>
+
+    </section>
+
+
+    <section class="contact-info">
+
+        <div class="container">
+
+            <div class="contact-info__heading">
+
+                <h2>قنوات الاتصال المباشر</h2>
+
+            </div>
+
+            <div class="contact-info__grid">
+
+                <article class="contact-info-card">
+
+                    <div class="contact-info-card__icon">
+                        📍
+                    </div>
+
+                    <h3>الموقع</h3>
+
+                    <p>
+                        الرياض، المملكة العربية السعودية
+                    </p>
+
+                </article>
+
+
+                <article class="contact-info-card">
+
+                    <div class="contact-info-card__icon">
+                        ⏰
+                    </div>
+
+                    <h3>ساعات العمل</h3>
+
+                    <p>
+                        الأحد – الخميس، ٨:٠٠ ص – ٥:٠٠ م
+                    </p>
+
+                </article>
+
+
+                <article class="contact-info-card">
+
+                    <div class="contact-info-card__icon">
+                        ✉
+                    </div>
+
+                    <h3>البريد الإلكتروني</h3>
+
+                    <p>
+                        email@example.sa
+                    </p>
+
+                </article>
+
+
+                <article class="contact-info-card">
+
+                    <div class="contact-info-card__icon">
+                        💬
+                    </div>
+
+                    <h3>الجوال / واتساب</h3>
+
+                    <p>
+                        +966 5X XXX XXXX
+                    </p>
+
+                </article>
+
+
+                <article class="contact-info-card">
+
+                    <div class="contact-info-card__icon">
+                        ☎
+                    </div>
+
+                    <h3>هاتف المكتب</h3>
+
+                    <p>
+                        +966 XX XXX XXXX
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="contact-form-section">
+
+        <div class="container">
+
+            <div class="contact-form-wrapper">
+
+                <div class="contact-form-heading">
+
+                    <h2>أرسل لنا رسالتك</h2>
+
+                    <p>
+                        يرجى تعبئة النموذج التالي وسنتواصل معك في أقرب وقت
+                    </p>
+
+                </div>
+
+
+                <form
+                    method="post"
+                    class="contact-form"
+                    novalidate
+                >
+
+                    {% csrf_token %}
+
+
+                    <div class="contact-form__grid">
+
+                        <div class="form-group">
+
+                            <label for="{{ form.name.id_for_label }}">
+                                الاسم الكامل *
+                            </label>
+
+                            {{ form.name }}
+
+                            {% for error in form.name.errors %}
+                                <p class="form-error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="{{ form.email.id_for_label }}">
+                                البريد الإلكتروني *
+                            </label>
+
+                            {{ form.email }}
+
+                            {% for error in form.email.errors %}
+                                <p class="form-error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="{{ form.phone.id_for_label }}">
+                                رقم الجوال
+                            </label>
+
+                            {{ form.phone }}
+
+                            {% for error in form.phone.errors %}
+                                <p class="form-error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="{{ form.service.id_for_label }}">
+                                الخدمة
+                            </label>
+
+                            {{ form.service }}
+
+                            {% for error in form.service.errors %}
+                                <p class="form-error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="form-group contact-form__full">
+
+                            <label for="{{ form.subject.id_for_label }}">
+                                موضوع الاستفسار *
+                            </label>
+
+                            {{ form.subject }}
+
+                            {% for error in form.subject.errors %}
+                                <p class="form-error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="form-group contact-form__full">
+
+                            <label for="{{ form.message.id_for_label }}">
+                                تفاصيل الطلب *
+                            </label>
+
+                            {{ form.message }}
+
+                            {% for error in form.message.errors %}
+                                <p class="form-error">
+                                    {{ error }}
+                                </p>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-form__privacy">
+
+                        <input
+                            type="checkbox"
+                            id="privacy"
+                            required
+                        >
+
+                        <label for="privacy">
+                            أوافق على سياسة الخصوصية وشروط الاستخدام
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn--primary contact-form__submit"
+                    >
+                        إرسال الطلب
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contact-support">
+
+        <div class="container">
+
+            <div class="contact-support__grid">
+
+                <article class="emergency-card">
+
+                    <div class="emergency-card__icon">
+                        ⚠
+                    </div>
+
+                    <div class="emergency-card__content">
+
+                        <span class="emergency-card__label">
+                            صيانة طوارئ
+                        </span>
+
+                        <p>
+                            للحالات العاجلة والأعطال المفاجئة يرجى الاتصال مباشرة
+                            على رقم الطوارئ
+                        </p>
+
+                        <strong>
+                            +966 5X XXX XXXX
+                        </strong>
+
+                        <a
+                            href="tel:+9665XXXXXXXX"
+                            class="btn btn--primary"
+                        >
+                            اتصل الآن
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="quick-faq-card">
+
+                    <h2>
+                        أسئلة شائعة سريعة
+                    </h2>
+
+                    <div class="quick-faq-list">
+
+                        <a href="{% url 'pages:faq' %}">
+                            كم يستغرق تركيب مصعد جديد؟
+                        </a>
+
+                        <a href="{% url 'pages:faq' %}">
+                            هل توفرون قطع غيار أصلية؟
+                        </a>
+
+                        <a href="{% url 'pages:faq' %}">
+                            هل عقود الصيانة لديكم معتمدة؟
+                        </a>
+
+                        <a href="{% url 'pages:faq' %}">
+                            كيف يمكنني حجز موعد معاينة؟
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contact-location">
+
+        <div class="container">
+
+            <div class="contact-location__heading">
+
+                <h2>موقع مقر الشركة الرئيسي</h2>
+
+            </div>
+
+
+            <div class="contact-location__map">
+
+                <iframe
+                    src="https://www.google.com/maps?q=Olaya%20King%20Fahd%20Road%20Riyadh%20Saudi%20Arabia&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="موقع بوابة المصاعد في الرياض"
+                ></iframe>
+
+
+                <div class="contact-location__card">
+
+                    <strong>
+                        بوابة المصاعد
+                    </strong>
+
+                    <span>
+                        الرياض، حي العليا، طريق الملك فهد
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 {% endblock %}
