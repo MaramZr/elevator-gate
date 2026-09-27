@@ -1,19 +1,221 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    {{ post.title }} | Elevator Gate
+{{ post.title }} | بوابة المصاعد
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages/blog-detail.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <h1>{{ post.title }}</h1>
+<section class="blog-detail-breadcrumb">
+    <div class="container">
 
-    {% if post.category %}
-        <p>Category: {{ post.category }}</p>
-    {% endif %}
+        <nav class="blog-detail-breadcrumb__nav"
+             aria-label="مسار التنقل">
 
-    <p>{{ post.published_at }}</p>
+            <a href="{% url 'pages:home' %}">
+                الرئيسية
+            </a>
 
-    <p>{{ post.content }}</p>
+            <span>←</span>
+
+            <a href="{% url 'blog:blog_list' %}">
+                المدونة
+            </a>
+
+            <span>←</span>
+
+            <span>
+                {{ post.title }}
+            </span>
+
+        </nav>
+
+    </div>
+</section>
+
+
+<article class="blog-article">
+
+    <header class="blog-article__header">
+        <div class="container">
+
+            <div class="blog-article__category">
+                {{ post.category.name }}
+            </div>
+
+            <h1>
+                {{ post.title }}
+            </h1>
+
+            {% if post.excerpt %}
+                <p class="blog-article__excerpt">
+                    {{ post.excerpt }}
+                </p>
+            {% endif %}
+
+
+            <div class="blog-article__meta-row">
+
+                <div class="blog-article__meta">
+
+                    {% if post.author %}
+                        <span>
+                            بقلم
+                            <strong>{{ post.author }}</strong>
+                        </span>
+                    {% endif %}
+
+                    {% if post.published_at %}
+                        <span>
+                            {{ post.published_at|date:"d F Y" }}
+                        </span>
+                    {% endif %}
+
+                    <span>
+                        وقت القراءة:
+                        {{ reading_time }}
+                        دقائق
+                    </span>
+
+                </div>
+
+
+                <div class="blog-article__share">
+                    <span>شارك المقال:</span>
+
+                    <button
+                        type="button"
+                        aria-label="مشاركة المقال"
+                    >
+                        ↗
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <div class="container">
+
+        <div class="blog-article__hero">
+
+            {% if post.image %}
+                <img
+                    src="{{ post.image.url }}"
+                    alt="{{ post.title }}"
+                >
+            {% else %}
+                <div class="blog-article__hero-placeholder">
+                    صورة المقال
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</article>
+
+<section class="blog-article-content">
+    <div class="container">
+
+        <div class="blog-article-content__inner">
+
+            {{ post.content|linebreaks }}
+
+        </div>
+
+    </div>
+</section>
+
+{% if related_posts %}
+
+<section class="related-articles">
+    <div class="container">
+
+        <div class="related-articles__heading">
+            <span>اقرأ وطور معارفك</span>
+
+            <h2>مقالات تخصصية مقترحة</h2>
+
+            <div class="related-articles__divider"></div>
+        </div>
+
+        <div class="related-articles__grid">
+
+            {% for related_post in related_posts %}
+
+                <article class="related-article-card">
+
+                    <a
+                        href="{% url 'blog:blog_detail' slug=related_post.slug %}"
+                        class="related-article-card__image"
+                    >
+                        {% if related_post.image %}
+                            <img
+                                src="{{ related_post.image.url }}"
+                                alt="{{ related_post.title }}"
+                            >
+                        {% else %}
+                            <div class="related-article-card__placeholder">
+                                صورة المقال
+                            </div>
+                        {% endif %}
+                    </a>
+
+                    <div class="related-article-card__body">
+
+                        <div class="related-article-card__meta">
+
+                            <span>
+                                {{ related_post.category.name }}
+                            </span>
+
+                            {% if related_post.published_at %}
+                                <time>
+                                    {{ related_post.published_at|date:"d/m/Y" }}
+                                </time>
+                            {% endif %}
+
+                        </div>
+
+                        <h3>
+                            <a href="{% url 'blog:blog_detail' slug=related_post.slug %}">
+                                {{ related_post.title }}
+                            </a>
+                        </h3>
+
+                        {% if related_post.excerpt %}
+                            <p>
+                                {{ related_post.excerpt|truncatewords:14 }}
+                            </p>
+                        {% endif %}
+
+                        <a
+                            href="{% url 'blog:blog_detail' slug=related_post.slug %}"
+                            class="related-article-card__link"
+                        >
+                            اقرأ المزيد ←
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+{% endif %}
+
 
 {% endblock %}

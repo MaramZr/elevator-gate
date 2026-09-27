@@ -64,12 +64,38 @@ def blog_list(request):
 
 def blog_detail(request, slug):
     post = get_object_or_404(
-        BlogPost,
+        BlogPost.objects.select_related("category", "author"),
         slug=slug,
         is_published=True,
     )
 
+    # Reading time based on article content
+    word_count = len(post.content.split())
+    reading_time = max(1, round(word_count / 200))
+
+    published_posts = (
+        BlogPost.objects
+        .filter(is_published=True)
+        .select_related("category", "author")
+        .order_by("-published_at", "-created_at")
+    )
+
+
+
+    related_posts = (
+        BlogPost.objects
+        .filter(
+            is_published=True,
+            category=post.category,
+        )
+        .exclude(pk=post.pk)
+        .select_related("category")
+        .order_by("-published_at", "-created_at")[:3]
+    )
+
     context = {
         "post": post,
+        "reading_time": reading_time,
+        "related_posts": related_posts,
     }
     return render(request, "blog/blog_detail.html", context)
