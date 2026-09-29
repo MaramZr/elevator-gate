@@ -7,6 +7,7 @@ class Service(models.Model):
     slug = models.SlugField(max_length=160, unique=True)
     description = models.TextField()
     icon = models.CharField(max_length=100, blank=True, null=True)
+    image = models.ImageField(upload_to="services/", blank=True, null=True)
     is_active = models.BooleanField(default=True)
     order = models.PositiveBigIntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
