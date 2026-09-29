@@ -12,14 +12,25 @@
 {% block content %}
 
     <section class="services-hero">
-        <div class="container">
 
-            <div class="services-hero__breadcrumb">
-                <a href="{% url 'pages:home' %}">الرئيسية</a>
-                <span>/</span>
-                <span>الخدمات</span>
+        <div class="blog-hero__breadcrumb-wrap">
+            <div class="container">
+                <nav class="blog-hero__breadcrumb"
+                    aria-label="مسار التنقل">
+
+                    <a href="{% url 'pages:home' %}">
+                        الرئيسية
+                    </a>
+
+                    <span aria-hidden="true">←</span>
+
+                    <span aria-current="page">الخدمات</span>
+
+                </nav>
             </div>
+        </div>
 
+        <div class="container">
             <div class="services-hero__content">
                 <h1>
                     خدماتنا الشاملة والمتخصصة
@@ -190,9 +201,11 @@
             </div>
 
             <div class="maintenance-contracts__visual">
-                <div class="maintenance-contracts__image-placeholder">
-                    صورة فنيي الصيانة
-                </div>
+                <img
+                    src="{% static 'images/maintenance-technician.jpg' %}"
+                    alt="فني صيانة مصاعد"
+                    class="maintenance-contracts__image"
+                >
             </div>
 
         </div>

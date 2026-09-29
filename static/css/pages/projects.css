@@ -3,19 +3,30 @@
     color: var(--color-white);
 }
 
-.projects-hero__breadcrumb {
-    padding-block: var(--space-3);
+/* Breadcrumb */
+
+.blog-hero__breadcrumb-wrap {
+    background-color: #245886;
+}
+
+.blog-hero__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    min-height: 50px;
 
     color: var(--color-gray-300);
     font-size: var(--font-size-xs);
 }
 
-.projects-hero__breadcrumb a {
+.blog-hero__breadcrumb a {
     color: var(--color-gray-300);
 }
 
-.projects-hero__breadcrumb span {
-    margin-inline: var(--space-2);
+.blog-hero__breadcrumb span:last-child {
+    color: var(--color-secondary);
+    
 }
 
 .projects-hero__content {

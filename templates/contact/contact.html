@@ -30,7 +30,6 @@
 
     </section>
 
-
     <section class="contact-breadcrumb">
 
         <div class="container">
@@ -52,7 +51,6 @@
         </div>
 
     </section>
-
 
     <section class="contact-info">
 
@@ -146,196 +144,207 @@
 
     </section>
 
-
-
-    <section class="contact-form-section">
+    <section class="contact-main" id="contact-form">
 
         <div class="container">
 
-            <div class="contact-form-wrapper">
+            <div class="contact-main__grid">
 
-                <div class="contact-form-heading">
 
-                    <h2>أرسل لنا رسالتك</h2>
+                <!-- =========================================
+                    FORM
+                    ========================================= -->
 
-                    <p>
-                        يرجى تعبئة النموذج التالي وسنتواصل معك في أقرب وقت
-                    </p>
+                <div class="contact-form-wrapper">
+
+                    <div class="contact-form-heading">
+
+                        <h2>أرسل لنا رسالتك</h2>
+
+                        <p>
+                            يرجى تعبئة النموذج التالي وسنتواصل معك في أقرب وقت
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        method="post"
+                        class="contact-form"
+                        novalidate
+                    >
+
+                        {% csrf_token %}
+
+
+                        <div class="contact-form__grid">
+
+
+                            <div class="form-group contact-form__full">
+
+                                <label for="{{ form.name.id_for_label }}">
+                                    الاسم الكامل *
+                                </label>
+
+                                {{ form.name }}
+
+                                {% for error in form.name.errors %}
+                                    <p class="form-error">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="{{ form.email.id_for_label }}">
+                                    البريد الإلكتروني *
+                                </label>
+
+                                {{ form.email }}
+
+                                {% for error in form.email.errors %}
+                                    <p class="form-error">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="{{ form.phone.id_for_label }}">
+                                    رقم الجوال
+                                </label>
+
+                                {{ form.phone }}
+
+                                {% for error in form.phone.errors %}
+                                    <p class="form-error">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="{{ form.service.id_for_label }}">
+                                    الخدمة
+                                </label>
+
+                                {{ form.service }}
+
+                                {% for error in form.service.errors %}
+                                    <p class="form-error">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="{{ form.subject.id_for_label }}">
+                                    موضوع الاستفسار *
+                                </label>
+
+                                {{ form.subject }}
+
+                                {% for error in form.subject.errors %}
+                                    <p class="form-error">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+
+                            </div>
+
+
+                            <div class="form-group contact-form__full">
+
+                                <label for="{{ form.message.id_for_label }}">
+                                    تفاصيل الطلب *
+                                </label>
+
+                                {{ form.message }}
+
+                                {% for error in form.message.errors %}
+                                    <p class="form-error">
+                                        {{ error }}
+                                    </p>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-form__privacy">
+
+                            <input
+                                type="checkbox"
+                                id="privacy"
+                                required
+                            >
+
+                            <label for="privacy">
+                                أوافق على سياسة الخصوصية وشروط الاستخدام
+                            </label>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn--primary contact-form__submit"
+                        >
+                            إرسال الطلب
+                        </button>
+
+                    </form>
 
                 </div>
 
 
-                <form
-                    method="post"
-                    class="contact-form"
-                    novalidate
-                >
+                <!-- =========================================
+                    SIDE COLUMN
+                    ========================================= -->
 
-                    {% csrf_token %}
+                <aside class="contact-main__side">
 
 
-                    <div class="contact-form__grid">
+                    <!-- Emergency -->
 
-                        <div class="form-group">
+                    <article class="emergency-card">
 
-                            <label for="{{ form.name.id_for_label }}">
-                                الاسم الكامل *
-                            </label>
+                        <div class="emergency-card__header">
 
-                            {{ form.name }}
+                            <div class="emergency-card__icon">
+                                ⚠
+                            </div>
 
-                            {% for error in form.name.errors %}
-                                <p class="form-error">
-                                    {{ error }}
-                                </p>
-                            {% endfor %}
+                            <h2>
+                                صيانة طوارئ
+                            </h2>
 
                         </div>
 
-
-                        <div class="form-group">
-
-                            <label for="{{ form.email.id_for_label }}">
-                                البريد الإلكتروني *
-                            </label>
-
-                            {{ form.email }}
-
-                            {% for error in form.email.errors %}
-                                <p class="form-error">
-                                    {{ error }}
-                                </p>
-                            {% endfor %}
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="{{ form.phone.id_for_label }}">
-                                رقم الجوال
-                            </label>
-
-                            {{ form.phone }}
-
-                            {% for error in form.phone.errors %}
-                                <p class="form-error">
-                                    {{ error }}
-                                </p>
-                            {% endfor %}
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="{{ form.service.id_for_label }}">
-                                الخدمة
-                            </label>
-
-                            {{ form.service }}
-
-                            {% for error in form.service.errors %}
-                                <p class="form-error">
-                                    {{ error }}
-                                </p>
-                            {% endfor %}
-
-                        </div>
-
-
-                        <div class="form-group contact-form__full">
-
-                            <label for="{{ form.subject.id_for_label }}">
-                                موضوع الاستفسار *
-                            </label>
-
-                            {{ form.subject }}
-
-                            {% for error in form.subject.errors %}
-                                <p class="form-error">
-                                    {{ error }}
-                                </p>
-                            {% endfor %}
-
-                        </div>
-
-
-                        <div class="form-group contact-form__full">
-
-                            <label for="{{ form.message.id_for_label }}">
-                                تفاصيل الطلب *
-                            </label>
-
-                            {{ form.message }}
-
-                            {% for error in form.message.errors %}
-                                <p class="form-error">
-                                    {{ error }}
-                                </p>
-                            {% endfor %}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="contact-form__privacy">
-
-                        <input
-                            type="checkbox"
-                            id="privacy"
-                            required
-                        >
-
-                        <label for="privacy">
-                            أوافق على سياسة الخصوصية وشروط الاستخدام
-                        </label>
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn--primary contact-form__submit"
-                    >
-                        إرسال الطلب
-                    </button>
-
-                </form>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="contact-support">
-
-        <div class="container">
-
-            <div class="contact-support__grid">
-
-                <article class="emergency-card">
-
-                    <div class="emergency-card__icon">
-                        ⚠
-                    </div>
-
-                    <div class="emergency-card__content">
-
-                        <span class="emergency-card__label">
-                            صيانة طوارئ
-                        </span>
 
                         <p>
-                            للحالات العاجلة والأعطال المفاجئة يرجى الاتصال مباشرة
-                            على رقم الطوارئ
+                            للحالات العاجلة والأعطال المفاجئة يرجى
+                            الاتصال مباشرة على رقم الطوارئ
                         </p>
+
 
                         <strong>
                             +966 5X XXX XXXX
                         </strong>
+
 
                         <a
                             href="tel:+9665XXXXXXXX"
@@ -344,38 +353,42 @@
                             اتصل الآن
                         </a>
 
-                    </div>
-
-                </article>
+                    </article>
 
 
-                <article class="quick-faq-card">
+                    <!-- Quick FAQ -->
 
-                    <h2>
-                        أسئلة شائعة سريعة
-                    </h2>
+                    <article class="quick-faq-card">
 
-                    <div class="quick-faq-list">
+                        <h2>
+                            أسئلة شائعة سريعة
+                        </h2>
 
-                        <a href="{% url 'pages:faq' %}">
-                            كم يستغرق تركيب مصعد جديد؟
-                        </a>
 
-                        <a href="{% url 'pages:faq' %}">
-                            هل توفرون قطع غيار أصلية؟
-                        </a>
+                        <div class="quick-faq-list">
 
-                        <a href="{% url 'pages:faq' %}">
-                            هل عقود الصيانة لديكم معتمدة؟
-                        </a>
+                            <a href="{% url 'pages:faq' %}">
+                                كم يستغرق تركيب مصعد جديد؟
+                            </a>
 
-                        <a href="{% url 'pages:faq' %}">
-                            كيف يمكنني حجز موعد معاينة؟
-                        </a>
+                            <a href="{% url 'pages:faq' %}">
+                                هل توفرون قطع غيار أصلية؟
+                            </a>
 
-                    </div>
+                            <a href="{% url 'pages:faq' %}">
+                                هل عقود الصيانة لديكم معتمدة؟
+                            </a>
 
-                </article>
+                            <a href="{% url 'pages:faq' %}">
+                                كيف يمكنني حجز موعد معاينة؟
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </aside>
+
 
             </div>
 

@@ -137,165 +137,43 @@
 }
 
 /* =====================================================
-   CONTACT — SUPPORT
+   CONTACT — FORM + SUPPORT
    ===================================================== */
 
-.contact-support {
-    padding-bottom: var(--space-8);
-
-    background-color: var(--color-white);
-}
-
-.contact-support__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: var(--space-5);
-
-    max-width: 1000px;
-    margin-inline: auto;
-}
-
-
-/* Emergency */
-
-.emergency-card {
-    display: flex;
-    align-items: flex-start;
-
-    gap: var(--space-4);
-
-    padding: var(--space-6);
-
-    background-color: #fff8e8;
-
-    border: 1px solid #efd48d;
-    border-radius: var(--radius-lg);
-}
-
-.emergency-card__icon {
-    display: grid;
-    place-items: center;
-
-    flex-shrink: 0;
-
-    width: 46px;
-    height: 46px;
-
-    background-color: var(--color-secondary);
-
-    border-radius: 50%;
-
-    color: var(--color-primary);
-
-    font-size: 1.1rem;
-}
-
-.emergency-card__content {
-    display: flex;
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: var(--space-3);
-}
-
-.emergency-card__label {
-    color: var(--color-primary);
-
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-}
-
-.emergency-card__content p {
-    margin: 0;
-
-    color: var(--color-gray-700);
-
-    font-size: var(--font-size-sm);
-    line-height: 1.8;
-}
-
-.emergency-card__content strong {
-    color: var(--color-primary);
-
-    font-size: var(--font-size-base);
-}
-
-
-/* Quick FAQ */
-
-.quick-faq-card {
-    padding: var(--space-6);
-
-    background-color: var(--color-white);
-
-    border: 1px solid var(--color-gray-200);
-    border-radius: var(--radius-lg);
-
-    box-shadow: var(--shadow-sm);
-}
-
-.quick-faq-card h2 {
-    margin: 0 0 var(--space-4);
-
-    color: var(--color-primary);
-
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-}
-
-.quick-faq-list {
-    display: flex;
-    flex-direction: column;
-}
-
-.quick-faq-list a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    min-height: 46px;
-
-    padding-block: var(--space-3);
-
-    color: var(--color-gray-700);
-
-    border-bottom: 1px solid var(--color-gray-200);
-
-    font-size: var(--font-size-sm);
-}
-
-.quick-faq-list a::after {
-    content: "←";
-
-    color: var(--color-secondary);
-
-    font-weight: var(--font-weight-bold);
-}
-
-.quick-faq-list a:last-child {
-    border-bottom: 0;
-}
-
-.quick-faq-list a:hover {
-    color: var(--color-primary);
-}
-
-/* =====================================================
-   CONTACT — FORM
-   ===================================================== */
-
-.contact-form-section {
-    padding-block: var(--space-5);
+.contact-main {
+    padding-block: var(--space-8);
 
     background-color: var(--color-gray-50);
 }
 
-.contact-form-wrapper {
-    max-width: 850px;
+
+/* Main layout */
+
+.contact-main__grid {
+    display: grid;
+
+    /*
+        الفورم أكبر
+        العمود الجانبي أصغر
+    */
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 0.8fr);
+
+    gap: var(--space-6);
+
+    max-width: 1100px;
 
     margin-inline: auto;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
+.contact-form-wrapper {
+    min-width: 0;
 
     padding: var(--space-7);
 
@@ -307,10 +185,9 @@
     box-shadow: var(--shadow-sm);
 }
 
+
 .contact-form-heading {
     margin-bottom: var(--space-6);
-
-    text-align: center;
 }
 
 .contact-form-heading h2 {
@@ -328,22 +205,30 @@
     color: var(--color-gray-700);
 
     font-size: var(--font-size-sm);
+    line-height: 1.8;
 }
 
 
+/* Form grid */
+
 .contact-form__grid {
     display: grid;
+
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: var(--space-5);
 }
 
+
 .form-group {
     display: flex;
     flex-direction: column;
 
+    min-width: 0;
+
     gap: var(--space-2);
 }
+
 
 .form-group label {
     color: var(--color-primary);
@@ -351,6 +236,7 @@
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
 }
+
 
 .form-group input,
 .form-group select,
@@ -365,20 +251,25 @@
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-md);
 
+    outline: none;
+
     font-family: var(--font-primary);
     font-size: var(--font-size-sm);
-
-    outline: none;
 }
+
 
 .form-group input,
 .form-group select {
     min-height: 48px;
 }
 
+
 .form-group textarea {
+    min-height: 150px;
+
     resize: vertical;
 }
+
 
 .form-group input:focus,
 .form-group select:focus,
@@ -386,9 +277,13 @@
     border-color: var(--color-secondary);
 }
 
+
 .contact-form__full {
     grid-column: 1 / -1;
 }
+
+
+/* Errors */
 
 .form-error {
     margin: 0;
@@ -398,6 +293,8 @@
     font-size: var(--font-size-xs);
 }
 
+
+/* Privacy */
 
 .contact-form__privacy {
     display: flex;
@@ -412,11 +309,16 @@
     font-size: var(--font-size-xs);
 }
 
+
 .contact-form__privacy input {
+    flex-shrink: 0;
+
     width: 16px;
     height: 16px;
 }
 
+
+/* Submit */
 
 .contact-form__submit {
     width: 100%;
@@ -426,6 +328,272 @@
     justify-content: center;
 }
 
+
+
+/* =====================================================
+   SIDE COLUMN
+   ===================================================== */
+
+.contact-main__side {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-5);
+
+    min-width: 0;
+}
+
+
+/* =====================================================
+   EMERGENCY
+   ===================================================== */
+
+.emergency-card {
+    padding: var(--space-5);
+
+    background-color: #fff8e8;
+
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius-lg);
+}
+
+
+.emergency-card__header {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-3);
+
+    margin-bottom: var(--space-4);
+}
+
+
+.emergency-card__icon {
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+
+    border-radius: 50%;
+
+    font-size: 1.1rem;
+}
+
+
+.emergency-card h2 {
+    margin: 0;
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+}
+
+
+.emergency-card p {
+    margin: 0 0 var(--space-4);
+
+    color: var(--color-gray-700);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.8;
+}
+
+
+.emergency-card strong {
+    display: block;
+
+    margin-bottom: var(--space-4);
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+}
+
+
+.emergency-card .btn {
+    width: 100%;
+
+    justify-content: center;
+}
+
+
+
+/* =====================================================
+   QUICK FAQ
+   ===================================================== */
+
+.quick-faq-card {
+    padding: var(--space-5);
+
+    background-color: var(--color-white);
+
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.quick-faq-card h2 {
+    margin: 0 0 var(--space-4);
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+}
+
+
+.quick-faq-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.quick-faq-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-3);
+
+    min-height: 48px;
+
+    padding-block: var(--space-3);
+
+    color: var(--color-gray-700);
+
+    border-bottom: 1px solid var(--color-gray-200);
+
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+
+.quick-faq-list a::after {
+    content: "←";
+
+    flex-shrink: 0;
+
+    color: var(--color-secondary);
+
+    font-weight: var(--font-weight-bold);
+}
+
+
+.quick-faq-list a:last-child {
+    border-bottom: 0;
+}
+
+
+.quick-faq-list a:hover {
+    color: var(--color-primary);
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .contact-main {
+        padding-block: var(--space-7);
+    }
+
+
+    /*
+       بالموبايل:
+       الفورم أولًا
+       ثم الطوارئ والأسئلة تحته
+    */
+
+    .contact-main__grid {
+        grid-template-columns: 1fr;
+
+        gap: var(--space-5);
+    }
+
+
+    .contact-form-wrapper {
+        padding: var(--space-5);
+    }
+
+
+    .contact-form-heading {
+        margin-bottom: var(--space-5);
+    }
+
+
+    .contact-form-heading h2 {
+        font-size: 1.7rem;
+    }
+
+
+    .contact-form__grid {
+        grid-template-columns: 1fr;
+
+        gap: var(--space-4);
+    }
+
+
+    .contact-form__full {
+        grid-column: auto;
+    }
+
+
+    .contact-main__side {
+        gap: var(--space-4);
+    }
+
+
+    .emergency-card,
+    .quick-faq-card {
+        width: 100%;
+    }
+
+}
+
+
+
+@media (max-width: 480px) {
+
+    .contact-main {
+        padding-block: var(--space-6);
+    }
+
+
+    .contact-form-wrapper {
+        padding: var(--space-4);
+    }
+
+
+    .contact-form-heading h2 {
+        font-size: 1.5rem;
+    }
+
+
+    .emergency-card,
+    .quick-faq-card {
+        padding: var(--space-4);
+    }
+
+
+    .emergency-card h2,
+    .quick-faq-card h2 {
+        font-size: var(--font-size-base);
+    }
+
+}
 /* =====================================================
    CONTACT — LOCATION MAP
    ===================================================== */

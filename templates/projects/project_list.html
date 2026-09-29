@@ -12,14 +12,24 @@
 {% block content %}
 
     <section class="projects-hero">
-        <div class="container">
 
-            <div class="projects-hero__breadcrumb">
-                <a href="{% url 'pages:home' %}">الرئيسية</a>
-                <span>/</span>
-                <span>المشاريع</span>
+        <div class="blog-hero__breadcrumb-wrap">
+            <div class="container">
+                <nav class="blog-hero__breadcrumb"
+                    aria-label="مسار التنقل">
+
+                    <a href="{% url 'pages:home' %}">
+                        الرئيسية
+                    </a>
+
+                    <span aria-hidden="true">←</span>
+
+                    <span aria-current="page">المشاريع</span>
+
+                </nav>
             </div>
-
+        </div>
+        <div class="container">
             <div class="projects-hero__content">
                 <h1>المشاريع المنفذة</h1>
 
