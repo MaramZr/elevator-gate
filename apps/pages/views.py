@@ -39,3 +39,11 @@ def faq(request):
         "faqs": faqs,
     }
     return render(request, "pages/faq.html", context)
+
+
+def privacy_policy(request):
+    return render(request, "pages/privacy_policy.html")
+
+
+def terms(request):
+    return render(request, "pages/terms.html")

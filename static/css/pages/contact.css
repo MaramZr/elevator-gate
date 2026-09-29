@@ -309,6 +309,12 @@
     font-size: var(--font-size-xs);
 }
 
+.contact-form__privacy a {
+    color: var(--color-secondary);
+
+    font-weight: var(--font-weight-semibold);
+}
+
 
 .contact-form__privacy input {
     flex-shrink: 0;
@@ -909,6 +915,8 @@
     .contact-form__privacy {
         align-items: flex-start;
     }
+
+    
 
     .contact-form__submit {
         width: 100%;

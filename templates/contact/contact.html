@@ -171,7 +171,7 @@
                     <form
                         method="post"
                         class="contact-form"
-                        novalidate
+                        
                     >
 
                         {% csrf_token %}
@@ -289,15 +289,39 @@
                             <input
                                 type="checkbox"
                                 id="privacy"
+                                name="privacy"
                                 required
                             >
 
                             <label for="privacy">
-                                أوافق على سياسة الخصوصية وشروط الاستخدام
+
+                                أوافق على
+
+                                <a
+                                    href="{% url 'pages:privacy_policy' %}"
+                                    target="_blank"
+                                >
+                                    سياسة الخصوصية
+                                </a>
+
+                                و
+
+                                <a
+                                    href="{% url 'pages:terms' %}"
+                                    target="_blank"
+                                >
+                                    شروط الاستخدام
+                                </a>
+
                             </label>
 
                         </div>
 
+                        {% if privacy_error %}
+                            <p class="form-error">
+                                {{ privacy_error }}
+                            </p>
+                        {% endif %}
 
                         <button
                             type="submit"

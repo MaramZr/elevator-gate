@@ -5,17 +5,18 @@ from .forms import ContactMessageForm
 
 
 def contact(request):
+    privacy_error = None
+
     if request.method == "POST":
         form = ContactMessageForm(request.POST)
 
-        if form.is_valid():
+        privacy_accepted = request.POST.get("privacy")
+
+        if not privacy_accepted:
+            privacy_error = "يجب الموافقة على سياسة الخصوصية وشروط الاستخدام."
+
+        elif form.is_valid():
             form.save()
-
-            messages.success(
-                request,
-                "تم استلام طلبك بنجاح."
-            )
-
             return redirect("contact:success")
 
     else:
@@ -23,6 +24,7 @@ def contact(request):
 
     context = {
         "form": form,
+        "privacy_error": privacy_error,
     }
 
     return render(
