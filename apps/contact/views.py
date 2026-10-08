@@ -10,7 +10,7 @@ def contact(request):
     if request.method == "POST":
         form = ContactMessageForm(request.POST)
 
-        privacy_accepted = request.POST.get("privacy")
+        privacy_accepted = request.POST.get("privacy") == "on"
 
         if not privacy_accepted:
             privacy_error = "يجب الموافقة على سياسة الخصوصية وشروط الاستخدام."
