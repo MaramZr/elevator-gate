@@ -5,6 +5,16 @@
 {{ service.title }} | بوابة المصاعد
 {% endblock %}
 
+{% block meta_description %}
+    {{ service.description|striptags|truncatechars:155 }}
+{% endblock %}
+
+{% comment %}
+    striptags لازالة اي HTML محتمل بالوصف
+    truncatechars لتقصير الوصف الى 155 حرف
+
+{% endcomment %}
+    
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/pages/service-detail.css' %}">
 {% endblock %}

@@ -5,6 +5,10 @@
 {{ project.title }} | بوابة المصاعد
 {% endblock %}
 
+{% block meta_description %}
+    {{ project.description|striptags|truncatechars:155 }}
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/pages/project-detail.css' %}">
 {% endblock %}

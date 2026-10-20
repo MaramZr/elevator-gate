@@ -5,6 +5,10 @@
 {{ post.title }} | بوابة المصاعد
 {% endblock %}
 
+{% block meta_description %}
+    {{ post.excerpt|default:post.content|striptags|truncatechars:155 }}
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/pages/blog-detail.css' %}">
 {% endblock %}
